@@ -31,6 +31,13 @@ const NewsSection = () => {
           alt="Slide 2"
         />
       </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="./src/images/people.png"
+          alt="Slide 2"
+        />
+      </Carousel.Item>
     </Carousel>
 
     <div className='data'>
