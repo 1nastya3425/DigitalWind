@@ -1,0 +1,288 @@
+.pre-events {
+  background-color: #FAEDCD;
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.events-list {
+  flex: 1;
+  background-color: #FEFADF;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.events-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+}
+
+.filter-group, .sort-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filter-btn, .sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  background: none;
+}
+
+.filter-btn img, .sort-btn img {
+  width: 20px;
+  height: auto;
+}
+
+.filter-select, .sort-select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.events-grid {
+  display: flex;
+  flex-direction: column; /* Столбец */
+  gap: 30px; /* Отступ между карточками */
+}
+
+.event-card {
+  background-color: #CDD5AE; /* Зеленый фон */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 0; /* Убираем отступы внутри карточки */
+  display: flex;
+  flex-direction: row; /* Горизонтальное расположение */
+  gap: 20px; /* Отступ между изображением и текстом */
+  height: 200px;
+  overflow: hidden; /* Обрезка содержимого */
+  width: 100%; /* Полная ширина */
+}
+
+/* Контейнер для изображения и текста */
+.event-content {
+  display: flex;
+  align-items: stretch; /* Растягиваем элементы по высоте */
+  flex: 1; /* Занимаем всё доступное пространство */
+  padding: 0; /* Убираем отступы */
+}
+
+.event-title {
+  font-size: 16px;
+  margin: 0; /* Убираем отступы */
+  white-space: nowrap; /* Одна строка */
+  overflow: hidden; /* Обрезка текста */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.event-details {
+  padding: 20px; /* Внутренние отступы для текста */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.event-description-wrapper {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.event-description {
+  line-height: 1.6;
+  max-height: 4.8em; /* 4 строки текста */
+  overflow: hidden;
+  transition: all 0.3s ease;
+  word-break: break-word;
+  white-space: pre-line;
+}
+
+.event-description.expanded {
+  max-height: 1000px;
+}
+
+.event-image {
+  width: 250px; /* Фиксированная ширина */
+  height: 100%; /* Растягивается по высоте контейнера */
+  border-radius: 5px 0 0 5px; /* Закругляем углы только слева */
+  object-fit: cover; /* Корректное масштабирование */
+  flex-shrink: 0; /* Запрещаем уменьшение изображения */
+  margin: 0; /* Убираем отступы */
+}
+
+.event-category {
+  margin: 0 0 5px;
+  color: #555;
+  font-weight: 600;
+}
+
+.no-posts-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #CDD5AE;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  color: #666;
+  width: 80%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.pagination {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 0;
+}
+
+.pagination-btn {
+  background-color: #CDD5AE;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-weight: 600;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #b8c68d;
+  transform: translateY(-2px);
+}
+
+.pagination-btn:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pagination-info {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+
+.read-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #337ab7;
+  cursor: pointer;
+  padding: 8px 0;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.arrow-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.btn-text {
+  font-size: 0.9rem;
+}
+
+.event-date {
+  margin-top: auto;
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .controls {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group,
+  .sort-group {
+    margin-bottom: 10px;
+  }
+
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .event-image {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0;
+  }
+  
+  .pagination-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+}

@@ -1,0 +1,80 @@
+body {
+  background-color: #FEFADF;
+}
+
+
+.events-section {
+  background-color: #E9EDCA ;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 150px;
+}
+
+.events-title {
+  font-size: 24px;
+  margin-bottom: 40px;
+}
+
+.events {
+  display: flex;
+  justify-content: center; /* Выравнивание по центру */
+}
+
+.event-image-container {
+  flex: 1;
+  height: 100%;
+}
+
+.event-card {
+  width: calc(33.33% - 20px);
+  margin: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+
+.event-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.event-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.event-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Адаптивный зеленый фон */
+.event-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #E9EDCA ; /* Цвет фона */
+  z-index: -1; /* Псевдоэлемент находится под текстом */
+  border-radius: 5px;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+  .event-card {
+    width: calc(50% - 20px); /* На мобильных устройствах две колонки */
+  }
+
+  @media (max-width: 480px) {
+    .event-card {
+      width: 100%; /* На очень маленьких экранах одна колонка */
+    }
+  }
+}

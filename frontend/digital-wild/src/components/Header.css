@@ -1,0 +1,148 @@
+:root {
+  --primary-color: #FEFADF;
+  --logo-size: 30px;
+  --text-color: #333;
+  --link-color: #333;
+  --hover-link-color: #555;
+  --logout-btn-bg: #b4a274;
+  --logout-btn-hover-bg: #9c854a;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 1rem;
+  background-color: var(--primary-color);
+  box-shadow: none; /* Убираем тень */
+  border-bottom: none; /* Убираем нижнюю границу */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+h2 {
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0; /* Запрет сжатия заголовка */
+}
+
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 15px;
+  flex-shrink: 0; /* Запрет сжатия навигации */
+}
+
+.nav-link {
+  color: var(--link-color);
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: all 0.3s;
+  border-radius: 4px;
+  white-space: nowrap; 
+  position: relative; 
+}
+
+.nav-link:hover {
+  color: var(--hover-link-color);
+}
+
+/* Стили для активной ссылки */
+.nav-link.active {
+  color: var(--link-color) !important;
+  font-weight: bold;
+  border-bottom: 4px solid var(--logout-btn-bg);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  top: -1rem; /* Выравниваем по верхней границе header */
+  left: 0;
+  right: 0;
+  height: 4px;
+  bottom: -1rem; /* Выравниваем по нижней границе header */
+  background-color: var(--active-link-bg); /* Цвет фона активной ссылки */
+  z-index: -1; /* Псевдоэлемент находится под текстом */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: var(--logo-size);
+  height: auto;
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.logout-btn {
+  background-color: var(--logout-btn-bg);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  border: none;
+  margin-top: -5px;
+}
+
+.logout-btn:hover {
+  background-color: var(--logout-btn-hover-bg);
+}
+
+.login {
+  background-color: var(--logout-btn-bg);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login:hover {
+  background-color: var(--logout-btn-hover-bg);
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+  .nav-links ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav-link {
+    padding: 10px 0;
+  }
+}

@@ -1,0 +1,128 @@
+/* AuthForm.css */
+.auth-bg {
+  padding: 3rem 2rem;
+  background-color: #FAEDCD;
+}
+
+.auth-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 6px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: relative;
+}
+
+.auth-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 15px;
+  background-color: #fefae0;
+  z-index: -1;
+}
+
+.auth-container h2 {
+  color: #000000;
+  font-size: 2.2rem;
+  margin: 0 0 2rem;
+  letter-spacing: -0.5px;
+  position: relative;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  border: .15em solid #e0dcbe;
+  border-radius: 0.8em;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.auth-container input:focus {
+  border-color: #e1bc93;
+  outline: none;
+}
+
+.auth-container button {
+  width: 100%;
+  padding: 1.3rem;
+  background: #CDD5AE;
+  color: black;
+  font-size: 1.5em;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.7em;
+  margin: 1.5rem 0;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.auth-container button:hover {
+  background: #c0c7a4;
+}
+
+.message {
+  padding: 1.2rem;
+  border-radius: 0.8em;
+  margin: 1rem 0;
+  text-align: center;
+  animation: appear 0.5s ease-out;
+}
+
+.message.error-message {
+  background: #fcd5db;
+  color: #c62828;
+  border: 0.1rem solid #c62828;
+}
+
+.message.success-message {
+  background: #e2ffee;
+  color: #27ae60;
+  border: 0.1rem solid #27ae60;
+}
+
+.auth-container p {
+  color: #000000;
+  margin-top: 1.2rem;
+  font-size: 1rem;
+}
+
+.auth-container a {
+  color: #3498db;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.auth-container a:hover {
+  color: #2980b9;
+  text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+  .auth-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .auth-container h2 {
+    font-size: 1.8rem;
+  }
+  
+  .auth-container input {
+    padding: 1rem;
+  }
+
+  .auth-container button {
+    font-size: 1rem;
+  }
+}

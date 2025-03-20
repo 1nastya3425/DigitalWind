@@ -1,0 +1,10 @@
+main {
+  padding: 0; /* Убираем отступы */
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+  .news-section {
+    padding: 10px 0;
+  }
+}

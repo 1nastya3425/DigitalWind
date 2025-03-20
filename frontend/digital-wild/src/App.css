@@ -1,0 +1,60 @@
+.App {
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+header {
+  background-color: #FAEDCD;
+  padding: 10px;
+}
+
+header img {
+  height: 50px;
+}
+
+header nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+header nav ul li {
+  display: inline;
+  margin-right: 10px;
+}
+
+.news-item {
+  margin-bottom: 20px;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.event-item img {
+  width: 100%;
+  height: auto;
+}
+
+.social-media a {
+  margin-right: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Медиа-запросы */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}
