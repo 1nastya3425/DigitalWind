@@ -10,7 +10,6 @@ const Projects = () => {
   const location = useLocation();
   const [posts, setPosts] = useState([]);
 
-  
   useEffect(() => {
     if (!user && !isLoading) {
       navigate('/login');
@@ -52,12 +51,10 @@ const Projects = () => {
 
   const handleResubmit = async (postId) => {
     try {
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:3000/api/posts/${postId}/resubmit`,
-        {}, // Пустое тело запроса
-        {
-          withCredentials: true // Включаем отправку куков
-        }
+        {},
+        { withCredentials: true }
       );
       
       setPosts(prevPosts =>
@@ -112,6 +109,7 @@ const Projects = () => {
           </ul>
         </nav>
       </div>
+
       <div className="profile-content">
         <h3>Мои проекты</h3>
 
@@ -150,12 +148,20 @@ const Projects = () => {
                     <div className="rejection-reason">
                       Причина отказа: {post.rejection_reason || 'Не указана'}
                     </div>
-                    <button 
-                      className="resubmit-btn"
-                      onClick={() => handleResubmit(post.id)}
-                    >
-                      Повторная отправка
-                    </button>
+                    <div className="action-buttons">
+                      <button 
+                        className="resubmit-btn"
+                        onClick={() => handleResubmit(post.id)}
+                      >
+                        Повторная отправка
+                      </button>
+                      <a 
+                        href={`/edit-post/${post.id}`}
+                        className="edit-btn"
+                      >
+                        Редактировать
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>

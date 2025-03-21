@@ -16,7 +16,7 @@
 
     useEffect(() => {
         if (!user?.is_admin) {
-        navigate('/profile');
+        navigate('/');
         }
         
         const fetchPendingPosts = async () => {

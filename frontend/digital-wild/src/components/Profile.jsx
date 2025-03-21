@@ -119,68 +119,6 @@ const Profile = () => {
           <p><strong>Дата рождения:</strong> {user.birthDate}</p>
           <p><strong>Место обучения:</strong> {user.educationPlace}</p>
         </div>
-        {/* Форма создания поста */}
-        {/* <div className="post-form-container">
-          <h2>Создать новый пост</h2>
-          {successMessage && <div className="success-message">{successMessage}</div>}
-          {errorMessage && <div className="error-message">{errorMessage}</div>}
-          
-          <form onSubmit={handleSubmit} className="post-form">
-            <div className="form-group">
-              <label>Заголовок *</label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Содержимое *</label>
-              <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label>Изображение</label>
-              <input
-                type="file"
-                onChange={handleImageSelect}
-                accept="image/*"
-              />
-              {imagePreview && (
-                <img 
-                  src={imagePreview} 
-                  alt="Preview" 
-                  className="image-preview"
-                />
-              )}
-            </div>
-
-            <div className="form-group">
-              <label>Категория</label>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="">Выберите категорию</option>
-                <option value="спорт">Спорт</option>
-                <option value="наука">Наука</option>
-                <option value="искусство">Искусство</option>
-                <option value="технологии">Технологии</option>
-                <option value="отдых">Отдых</option>
-              </select>
-            </div>
-
-            <button type="submit" className="submit-btn">
-              {user.is_admin ? 'Опубликовать' : 'Отправить на модерацию'}
-            </button>
-          </form>
-        </div> */}
       </div>
     </div>
   );

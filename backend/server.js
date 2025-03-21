@@ -482,6 +482,72 @@ app.put('/api/posts/:id/resubmit', authMiddleware, async (req, res) => {
   }
 });
 
+const checkPostOwnership = (req, res, next) => {
+  const postId = req.params.id;
+  const userId = req.user.id;
+
+  db.get('SELECT user_id FROM posts WHERE id = ?', [postId], (err, row) => {
+    if (err) return res.status(500).json({ error: 'Ошибка сервера' });
+    if (!row || row.user_id !== userId) {
+      return res.status(403).json({ error: 'Доступ запрещен' });
+    }
+    next();
+  });
+};
+
+app.put('/api/posts/:id', 
+  authMiddleware, 
+  upload.single('image'), // Обязательно для обработки файлов
+  async (req, res) => {
+    try {
+      const postId = req.params.id;
+      const userId = req.user.id;
+      const { title, content, category } = req.body;
+      const image = req.file ? `/uploads/${req.file.filename}` : req.body.image;
+
+      // Проверяем существование поста
+      const existingPost = await new Promise((resolve, reject) => {
+        db.get('SELECT * FROM posts WHERE id = ? AND user_id = ?', 
+          [postId, userId],
+          (err, row) => {
+            if (err) reject(err);
+            resolve(row);
+          });
+      });
+
+      if (!existingPost) {
+        return res.status(404).json({ error: 'Пост не найден' });
+      }
+
+      // Обновляем пост
+      await new Promise((resolve, reject) => {
+        db.run(`
+          UPDATE posts 
+          SET title = ?,
+              content = ?,
+              category = ?,
+              image = ?
+          WHERE id = ? AND user_id = ?
+        `, [
+          title || existingPost.title,
+          content || existingPost.content,
+          category || existingPost.category,
+          image || existingPost.image,
+          postId,
+          userId
+        ], (err) => {
+          if (err) reject(err);
+          resolve();
+        });
+      });
+
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Ошибка:', error.message);
+      res.status(500).json({ error: 'Ошибка сервера' });
+    }
+});
+
 app.get('/api/moderation/pending', authMiddleware, (req, res) => {
   // Проверка роли модератора/админа
   if (!req.user.isAdmin) {
@@ -499,6 +565,15 @@ app.get('/api/moderation/pending', authMiddleware, (req, res) => {
   db.all(sql, (err, posts) => {
     if (err) return res.status(500).json({ error: 'Ошибка сервера' });
     res.json(posts);
+  });
+});
+
+app.get('/api/posts/:id', authMiddleware, checkPostOwnership, (req, res) => {
+  const postId = req.params.id;
+  db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, post) => {
+    if (err) return res.status(500).json({ error: 'Ошибка сервера' });
+    if (!post) return res.status(404).json({ error: 'Пост не найден' });
+    res.json(post);
   });
 });
 
