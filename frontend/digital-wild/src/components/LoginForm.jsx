@@ -80,6 +80,8 @@ const LoginForm = () => {
             {message.text}
           </div>
         )}
+        {usernameError && <div className="error-message">{usernameError}</div>}
+        {passwordError && <div className="error-message">{passwordError}</div>}
         
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-input-group">
@@ -94,7 +96,6 @@ const LoginForm = () => {
               required
               className="auth-input"
             />
-            {usernameError && <div className="error-message">{usernameError}</div>}
           </div>
 
           <div className="auth-input-group">
@@ -109,7 +110,6 @@ const LoginForm = () => {
               required
               className="auth-input"
             />
-            {passwordError && <div className="error-message">{passwordError}</div>}
           </div>
 
           <button 

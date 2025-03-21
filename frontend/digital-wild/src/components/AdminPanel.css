@@ -202,15 +202,6 @@
   background: #c2b69c;
 }
 
-.error-message {
-  background: #fff5f5;
-  border: 1px solid #f5c6cb;
-  color: #e5535b;
-  padding: 1rem;
-  border-radius: 4px;
-  margin-bottom: 1rem;
-}
-
 .loading-spinner {
   display: inline-block;
   width: 40px;
@@ -355,5 +346,7 @@ input[type="checkbox"]:after:hover {
   background: #fcd5db;
   color: #c62828;
   border: 0.1rem solid #c62828;
-  margin-bottom: 2rem;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 0 0 2rem;
 }

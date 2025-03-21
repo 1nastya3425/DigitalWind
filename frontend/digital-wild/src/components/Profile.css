@@ -132,12 +132,10 @@ body {
 
 .success-message {
   color: #28a745;
-  margin: 1rem 0;
 }
 
 .error-message {
   color: #dc3545;
-  margin: 1rem 0;
 }
 
 .image-preview {

@@ -90,6 +90,11 @@ const RegisterForm = () => {
         {message.text && (
           <div className={`message ${message.type}-message`}>{message.text}</div>
         )}
+        {usernameError && <div className="error-message">{usernameError}</div>}
+        {passwordError && <div className="error-message">{passwordError}</div>}
+        {confirmPasswordError && (
+          <div className="error-message">{confirmPasswordError}</div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div className="auth-input-group">
@@ -104,7 +109,6 @@ const RegisterForm = () => {
               required
               className="auth-input"
             />
-            {usernameError && <div className="error-message">{usernameError}</div>}
           </div>
 
           <div className="auth-input-group">
@@ -119,7 +123,6 @@ const RegisterForm = () => {
               required
               className="auth-input"
             />
-            {passwordError && <div className="error-message">{passwordError}</div>}
           </div>
 
           <div className="auth-input-group">
@@ -134,9 +137,6 @@ const RegisterForm = () => {
               required
               className="auth-input"
             />
-            {confirmPasswordError && (
-              <div className="error-message">{confirmPasswordError}</div>
-            )}
           </div>
 
           <button
