@@ -1,20 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from './authContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import './Projects.css';
 
 const Projects = () => {
   const { user, isLoading, logout } = useAuth();
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
-  const [category, setCategory] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState('');
+  const location = useLocation();
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     if (!user && !isLoading) {
@@ -22,54 +16,35 @@ const Projects = () => {
     }
   }, [user, isLoading, navigate]);
 
-  const handleImageSelect = (e) => {
-    if (e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
-      setImagePreview(URL.createObjectURL(e.target.files[0]));
-    }
-  };
+// В Projects.jsx
+useEffect(() => {
+  let isMounted = true;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!title.trim() || !content.trim()) {
-      setErrorMessage('Заполните обязательные поля');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('category', category);
-    if (selectedImage) formData.append('image', selectedImage);
+  const fetchPosts = async () => {
+    if (!user) return;
 
     try {
-      const response = await axios.post('http://localhost:3000/api/posts', formData, {
-        withCredentials: true,
-        headers: { 
-          'Content-Type': 'multipart/form-data' // Убедитесь, что это указано
-        }
-      });
+      const response = await axios.get(`http://localhost:3000/api/posts/user/${user.id}`);
       
-      setTitle('');
-      setContent('');
-      setCategory('');
-      setSelectedImage(null);
-      setImagePreview('');
-      setSuccessMessage('Пост отправлен на модерацию');
-    } catch (error) {
-      if (error.response) {
-        // Сервер вернул ошибку
-        setErrorMessage(`Ошибка: ${error.response.data.error}`);
-      } else if (error.request) {
-        // Запрос не дошел до сервера
-        setErrorMessage('Сервер недоступен. Проверьте подключение');
-      } else {
-        // Ошибка настройки запроса
-        setErrorMessage('Ошибка: ' + error.message);
+      if (isMounted) {
+        // Проверяем, что пришел массив
+        if (Array.isArray(response.data)) {
+          setPosts(response.data);
+        } else {
+          // Принудительно создаем массив из объекта (если сервер вернул объект)
+          setPosts(response.data ? [response.data] : []);
+        }
       }
+    } catch (error) {
+      console.error('Ошибка загрузки постов:', error);
+      setPosts([]);
     }
   };
+
+  fetchPosts();
+
+  return () => { isMounted = false };
+}, [user]);
 
   const handleLogout = async () => {
     try {
@@ -92,28 +67,78 @@ const Projects = () => {
     <div className="profile-container">
       <div className="profile-sidebar">
         <div className="profile-avatar">
-          <img src={user.avatarUrl} alt="Avatar" />
-          <div className="profile-name">{user.fullName}</div>
+          <img src={user?.avatarUrl} alt="Avatar" />
+          <div className="profile-name">{user?.fullName}</div>
         </div>
         <nav>
           <ul>
-            <div className='sidebar-option '>
+            <div className='sidebar-option'>
               <li>
-                <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>Аккаунт</a>
+                <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>
+                  Аккаунт
+                </a>
               </li>
               <li>
-                <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>Мои проекты</a>
+                <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>
+                  Мои проекты
+                </a>
               </li>
               <li>
-                <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>Создать пост</a>
+                <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>
+                  Создать пост
+                </a>
               </li>
             </div>
-            <li><button onClick={handleLogout} className='logout-acc'>Выйти</button></li>
+            <li>
+              <button onClick={handleLogout} className='logout-acc'>
+                Выйти
+              </button>
+            </li>
           </ul>
         </nav>
       </div>
       <div className="profile-content">
         <h3>Мои проекты</h3>
+
+        <div className="posts-list">
+          {posts.length === 0 ? (
+            <div className="no-posts">У вас пока нет проектов</div>
+          ) : (
+            posts.map((post) => (
+              <div key={post.id} className="post-card">
+                <div className="post-header">
+                  <h4>{post.title}</h4>
+                  <span className={`status-badge ${post.status}`}>
+                    {post.status === 'pending' && 'На модерации'}
+                    {post.status === 'approved' && 'Одобрен'}
+                    {post.status === 'rejected' && 'Отклонен'}
+                  </span>
+                </div>
+                
+                {post.image && (
+                  <img
+                    src={`http://localhost:3000${post.image}`}
+                    alt={post.title}
+                    className="post-image"
+                  />
+                )}
+
+                <div className="post-content">
+                  <div className="post-text">{post.content}</div>
+                  <div className="post-category">
+                    Категория: {post.category || 'Не указана'}
+                  </div>
+                </div>
+
+                {post.status === 'rejected' && (
+                  <div className="rejection-reason">
+                    Причина отказа: {post.rejection_reason || 'Не указана'}
+                  </div>
+                )}
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
   );

@@ -426,6 +426,25 @@ app.post('/api/posts',
     }
 });
 
+// Замените текущий роут на:
+app.get('/api/posts/user/:userId', (req, res) => {
+  const userId = req.params.userId;
+  const query = `
+    SELECT * FROM posts 
+    WHERE user_id = ? 
+    ORDER BY created_at DESC
+  `;
+  
+  db.all(query, [userId], (err, rows) => {
+    if (err) {
+      console.error('Database error:', err);
+      return res.status(500).json({ error: 'Ошибка сервера' });
+    }
+    // Всегда возвращаем массив
+    res.json(rows || []);
+  });
+});
+
 app.get('/api/moderation/pending', authMiddleware, (req, res) => {
   // Проверка роли модератора/админа
   if (!req.user.isAdmin) {
