@@ -90,34 +90,37 @@ const PostCreation = () => {
 
   return (
     <div className="profile-container">
-      <div className="profile-sidebar">
-        <div className="profile-avatar">
-          <img src={user.avatarUrl} alt="Avatar" />
-          <div className="profile-name">{user.fullName}</div>
+      <div className="profile-section">
+        <h3>Личный Кабинет</h3>
+        <div className="profile-sidebar">
+          <div className="profile-avatar">
+            <img src={user?.avatarUrl || '/default-avatar.png'} alt="Avatar" />
+            <div className="profile-name">{user?.fullName || user?.username}</div>
+          </div>
+          <nav>
+            <ul>
+              <div className='sidebar-option '>
+                <li>
+                  <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>Аккаунт</a>
+                </li>
+                <li>
+                  <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>Мои проекты</a>
+                </li>
+                <li>
+                  <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>Создать пост</a>
+                </li>
+              </div>
+              <li><button onClick={handleLogout} className='logout-acc'>Выйти...</button></li>
+            </ul>
+          </nav>
         </div>
-        <nav>
-          <ul>
-            <div className='sidebar-option '>
-              <li>
-                <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>Аккаунт</a>
-              </li>
-              <li>
-                <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>Мои проекты</a>
-              </li>
-              <li>
-                <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>Создать пост</a>
-              </li>
-            </div>
-            <li><button onClick={handleLogout} className='logout-acc'>Выйти</button></li>
-          </ul>
-        </nav>
       </div>
-      <div className="profile-content">
-      <div className="post-form-container">
-          <h2>Создать новый пост</h2>
+
+      <div className="content-container">
+        <h3>Создать новый пост</h3>
           {successMessage && <div className="success-message">{successMessage}</div>}
           {errorMessage && <div className="error-message">{errorMessage}</div>}
-          
+            
           <form onSubmit={handleSubmit} className="post-form">
             <div className="form-group">
               <label>Заголовок *</label>
@@ -174,7 +177,6 @@ const PostCreation = () => {
             </button>
           </form>
         </div>
-      </div>
     </div>
   );
 };

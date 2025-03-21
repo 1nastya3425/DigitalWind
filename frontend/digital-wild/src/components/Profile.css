@@ -10,6 +10,17 @@ body {
   max-width: 1200px;
   background-color: #FEFADF;
   margin: 4rem auto;
+  border-radius: 20px;
+}
+
+.profile-section {
+  margin: 2rem 3em 3rem 3rem;
+}
+
+.profile-section h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
 }
 
 .profile-title {
@@ -22,7 +33,7 @@ body {
   padding: 2rem;
   border-radius: 8px;
   background-color: #E9EDCA;
-  margin: 40px 100px 40px 40px;
+  outline: 1px solid #CDD5AE;
   height: fit-content;
 }
 
@@ -33,9 +44,15 @@ body {
   margin-bottom: 1rem;
 }
 
+.profile-avatar {
+  display: flex;
+}
+
 .profile-name {
   font-size: 1.2rem;
+  margin-left: 1rem;
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
 }
 
 .profile-sidebar nav ul {
@@ -45,7 +62,7 @@ body {
 
 .sidebar-option {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1rem;
 }
 
 .profile-sidebar nav ul li {
@@ -55,11 +72,10 @@ body {
 .profile-sidebar nav ul li a {
   text-decoration: none;
   color: #333;
-  font-weight: 600;
   display: block; /* Чтобы ссылки занимали всю ширину */
   padding: 0.5rem 0; /* Добавляем внутренние отступы */
   transition: background-color 0.3s; /* Плавный переход при наведении */
-  border-radius: 5px; /* Скругляем углы */
+  border-radius: 20px; /* Скругляем углы */
 }
 
 .profile-sidebar nav ul li a:hover,
@@ -67,11 +83,15 @@ body {
   background-color: #CDD5AE; /* Цвет фона при активации */
 }
 
-.profile-content {
+.content-container {
   flex: 1;
-  padding: 2rem;
   border-radius: 8px;
-  margin-right: 40px;
+  margin: 2.3rem 3rem 3rem 3rem;
+}
+
+.content-container h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
 }
 
 .account-info {
@@ -79,56 +99,8 @@ body {
 }
 
 .account-info p {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
-
-/* Форма создания поста*/
-/* .post-form-container {
-  margin: 2rem 0;
-  padding: 1.5rem;
-  background-color: #fffce7;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.post-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.form-group label {
-  font-weight: 500;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  padding: 0.8rem;
-  border: 1px solid #ced4da;
-  border-radius: 4px;
-  font-size: 1rem;
-}
-
-.submit-btn {
-  padding: 0.8rem;
-  background: #28a745;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.submit-btn:hover {
-  background: #218838;
-} */
 
 .success-message {
   color: #28a745;
@@ -144,7 +116,7 @@ body {
 }
 
 .logout-acc {
-  color: red;
+  color: #EC5E5E;
   padding: 5px 10px;
   border-radius: 5px;
   text-decoration: none;
@@ -155,17 +127,8 @@ body {
   background: transparent;
 }
 
-.logout-btn {
-  background-color: var(--logout-btn-bg);
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: background-color 0.3s;
-  border: none;
-}
-
-.logout-btn:hover {
-  background-color: var(--logout-btn-hover-bg);
+.logout-acc:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 768px) {
@@ -175,9 +138,5 @@ body {
 
   .profile-sidebar {
     margin-bottom: 2rem;
-  }
-
-  .profile-content {
-    margin-left: 0;
   }
 }

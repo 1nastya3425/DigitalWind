@@ -90,29 +90,32 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <div className="profile-sidebar">
-        <div className="profile-avatar">
-          <img src={user.avatarUrl} alt="Avatar" />
-          <div className="profile-name">{user.fullName}</div>
+      <div className="profile-section">
+        <h3>Личный Кабинет</h3>
+        <div className="profile-sidebar">
+          <div className="profile-avatar">
+            <img src={user?.avatarUrl || '/default-avatar.png'} alt="Avatar" />
+            <div className="profile-name">{user?.fullName || user?.username}</div>
+          </div>
+          <nav>
+            <ul>
+              <div className='sidebar-option '>
+                <li>
+                  <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>Аккаунт</a>
+                </li>
+                <li>
+                  <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>Мои проекты</a>
+                </li>
+                <li>
+                  <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>Создать пост</a>
+                </li>
+              </div>
+              <li><button onClick={handleLogout} className='logout-acc'>Выйти...</button></li>
+            </ul>
+          </nav>
         </div>
-        <nav>
-          <ul>
-            <div className='sidebar-option '>
-              <li>
-                <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>Аккаунт</a>
-              </li>
-              <li>
-                <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>Мои проекты</a>
-              </li>
-              <li>
-                <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>Создать пост</a>
-              </li>
-            </div>
-            <li><button onClick={handleLogout} className='logout-acc'>Выйти</button></li>
-          </ul>
-        </nav>
       </div>
-      <div className="profile-content">
+      <div className="content-container">
         <h3>Аккаунт</h3>
         <div className="account-info">
           <p><strong>ФИО:</strong> {user.fullName}</p>
