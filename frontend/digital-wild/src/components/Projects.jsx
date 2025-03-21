@@ -10,41 +10,36 @@ const Projects = () => {
   const location = useLocation();
   const [posts, setPosts] = useState([]);
 
+  
   useEffect(() => {
     if (!user && !isLoading) {
       navigate('/login');
     }
   }, [user, isLoading, navigate]);
 
-// В Projects.jsx
-useEffect(() => {
-  let isMounted = true;
+  useEffect(() => {
+    let isMounted = true;
 
-  const fetchPosts = async () => {
-    if (!user) return;
+    const fetchPosts = async () => {
+      if (!user) return;
 
-    try {
-      const response = await axios.get(`http://localhost:3000/api/posts/user/${user.id}`);
-      
-      if (isMounted) {
-        // Проверяем, что пришел массив
-        if (Array.isArray(response.data)) {
-          setPosts(response.data);
-        } else {
-          // Принудительно создаем массив из объекта (если сервер вернул объект)
-          setPosts(response.data ? [response.data] : []);
+      try {
+        const response = await axios.get(`http://localhost:3000/api/posts/user/${user.id}`);
+        
+        if (isMounted) {
+          const data = Array.isArray(response.data) ? response.data : [];
+          setPosts(data);
         }
+      } catch (error) {
+        console.error('Ошибка загрузки постов:', error);
+        setPosts([]);
       }
-    } catch (error) {
-      console.error('Ошибка загрузки постов:', error);
-      setPosts([]);
-    }
-  };
+    };
 
-  fetchPosts();
+    fetchPosts();
 
-  return () => { isMounted = false };
-}, [user]);
+    return () => { isMounted = false };
+  }, [user]);
 
   const handleLogout = async () => {
     try {
@@ -52,6 +47,26 @@ useEffect(() => {
       navigate('/login');
     } catch (error) {
       console.error('Ошибка выхода:', error);
+    }
+  };
+
+  const handleResubmit = async (postId) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/posts/${postId}/resubmit`,
+        {}, // Пустое тело запроса
+        {
+          withCredentials: true // Включаем отправку куков
+        }
+      );
+      
+      setPosts(prevPosts =>
+        prevPosts.map(post =>
+          post.id === postId ? { ...post, status: 'pending' } : post
+        )
+      );
+    } catch (error) {
+      console.error('Ошибка повторной отправки:', error);
     }
   };
 
@@ -67,8 +82,8 @@ useEffect(() => {
     <div className="profile-container">
       <div className="profile-sidebar">
         <div className="profile-avatar">
-          <img src={user?.avatarUrl} alt="Avatar" />
-          <div className="profile-name">{user?.fullName}</div>
+          <img src={user?.avatarUrl || '/default-avatar.png'} alt="Avatar" />
+          <div className="profile-name">{user?.fullName || user?.username}</div>
         </div>
         <nav>
           <ul>
@@ -131,8 +146,16 @@ useEffect(() => {
                 </div>
 
                 {post.status === 'rejected' && (
-                  <div className="rejection-reason">
-                    Причина отказа: {post.rejection_reason || 'Не указана'}
+                  <div className="rejection-container">
+                    <div className="rejection-reason">
+                      Причина отказа: {post.rejection_reason || 'Не указана'}
+                    </div>
+                    <button 
+                      className="resubmit-btn"
+                      onClick={() => handleResubmit(post.id)}
+                    >
+                      Повторная отправка
+                    </button>
                   </div>
                 )}
               </div>

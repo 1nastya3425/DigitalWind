@@ -445,6 +445,43 @@ app.get('/api/posts/user/:userId', (req, res) => {
   });
 });
 
+// Роут повторной отправки поста
+app.put('/api/posts/:id/resubmit', authMiddleware, async (req, res) => {
+  try {
+    const postId = req.params.id;
+    const userId = req.user.id;
+
+    // Проверяем принадлежность поста
+    const post = await new Promise((resolve, reject) => {
+      db.get('SELECT * FROM posts WHERE id = ?', [postId], (err, row) => {
+        if (err) reject(err);
+        resolve(row);
+      });
+    });
+
+    if (!post || post.user_id !== userId) {
+      return res.status(403).json({ error: 'Доступ запрещен' });
+    }
+
+    // Обновляем статус на "pending"
+    await new Promise((resolve, reject) => {
+      db.run(
+        'UPDATE posts SET status = "pending", rejection_reason = NULL WHERE id = ?',
+        [postId],
+        (err) => {
+          if (err) reject(err);
+          resolve();
+        }
+      );
+    });
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Ошибка:', error.message);
+    res.status(500).json({ error: 'Ошибка сервера' });
+  }
+});
+
 app.get('/api/moderation/pending', authMiddleware, (req, res) => {
   // Проверка роли модератора/админа
   if (!req.user.isAdmin) {
