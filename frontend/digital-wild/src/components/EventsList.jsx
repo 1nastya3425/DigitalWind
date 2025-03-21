@@ -118,7 +118,7 @@ const EventsList = () => {
             events.filter(event => event.status === 'approved').map(event => (
               <div key={event.id} className="event-card">
                 <img 
-                  src={`http://localhost:3000${event.image}`} 
+                  src={event.image ? `http://localhost:3000${event.image}` : '../../images/default-image.png'} 
                   alt={event.title} 
                   className="event-image"
                 />
