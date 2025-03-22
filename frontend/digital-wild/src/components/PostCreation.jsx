@@ -142,6 +142,21 @@ const PostCreation = () => {
             </div>
 
             <div className="form-group">
+              <label>Категория</label>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">Выберите категорию</option>
+                <option value="спорт">Спорт</option>
+                <option value="наука">Наука</option>
+                <option value="искусство">Искусство</option>
+                <option value="технологии">Технологии</option>
+                <option value="отдых">Отдых</option>
+              </select>
+            </div>
+
+            <div className="form-group">
               <label>Изображение</label>
               <input
                 type="file"
@@ -155,21 +170,6 @@ const PostCreation = () => {
                   className="image-preview"
                 />
               )}
-            </div>
-
-            <div className="form-group">
-              <label>Категория</label>
-              <select
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="">Выберите категорию</option>
-                <option value="спорт">Спорт</option>
-                <option value="наука">Наука</option>
-                <option value="искусство">Искусство</option>
-                <option value="технологии">Технологии</option>
-                <option value="отдых">Отдых</option>
-              </select>
             </div>
 
             <button type="submit" className="submit-btn">

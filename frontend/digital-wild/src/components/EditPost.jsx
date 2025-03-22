@@ -126,8 +126,8 @@ useEffect(() => {
 
   return (
     <div className="edit-post-container">
-      <h2>Редактирование проекта</h2>
-      <form onSubmit={handleSubmit}>
+      <h3>Редактирование проекта</h3>
+      <form onSubmit={handleSubmit} className="post-form">
         <div className="form-group">
           <label>Заголовок</label>
           <input
@@ -174,7 +174,7 @@ useEffect(() => {
             />
           )}
         </div>
-        <button type="submit" className="save-btn">
+        <button type="submit" className="submit-btn">
           Сохранить изменения
         </button>
       </form>

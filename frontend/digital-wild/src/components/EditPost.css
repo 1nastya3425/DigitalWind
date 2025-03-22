@@ -1,0 +1,13 @@
+.edit-post-container {
+  max-width: 900px;
+  background-color: #FEFADF;
+  margin: 4rem auto;
+  border-radius: 20px;
+  padding: 2rem 3rem 3rem;
+}
+
+.edit-post-container h3 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
