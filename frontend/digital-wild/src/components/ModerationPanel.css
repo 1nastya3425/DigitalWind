@@ -17,14 +17,15 @@
     height: fit-content;
     align-items: baseline;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 1.5em;
+    margin-bottom: 1rem;
   }
 
 .moderation-container {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
+  flex-direction: column;
   flex-wrap: wrap;
+  margin-bottom: 3em;
 }
 
   .posts-list {
@@ -39,7 +40,6 @@
     border-radius: 14px;
     transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
     border: 1px solid transparent;
-    margin-top: 30px;
     width: 350px;
     height: 500px;
   }
@@ -67,9 +67,12 @@
   }
 
   .title-p {
-    color: #1a202c;
     font-size: 1.5rem;
-    margin-bottom: 0.75rem;
+  }
+
+  .title-p2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.75rem;
   }
   
   .status {
@@ -160,39 +163,10 @@ svg {
   button.edit-btn:hover {
     background: #93c5fd;
   }
-  
-  .edit-form {
-    background: white;
-    border-radius: 14px;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    margin-bottom: 2rem;
-    border: 2px dashed #e0e7ff;
-  }
-  
-  .edit-form input,
-  .edit-form textarea,
-  .edit-form select {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid #e0e7ff;
-    border-radius: 8px;
-    margin: 0.5rem 0;
-    transition: border-color 0.3s;
-  }
-  
-  .edit-form input:focus,
-  .edit-form textarea:focus,
-  .edit-form select:focus {
-    border-color: #93c5fd;
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-  }
-  
+
   .edit-controls {
     display: flex;
     gap: 1rem;
-    justify-content: flex-end;
     margin-top: 1.5rem;
   }
   
