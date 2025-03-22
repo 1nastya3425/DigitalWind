@@ -1,7 +1,6 @@
 .pre-events {
   background-color: #FAEDCD;
   min-height: 100vh;
-  padding: 20px;
   display: flex;
   flex-direction: column;
 }
@@ -10,10 +9,10 @@
   flex: 1;
   background-color: #FEFADF;
   border-radius: 10px;
-  padding: 20px;
+  padding: 2.5rem;
   max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
+  margin: 4rem auto;
   position: relative;
   min-height: 500px;
   display: flex;
@@ -28,7 +27,8 @@
 }
 
 .events-title {
-  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin: 0;
 }
 
@@ -72,17 +72,16 @@
   gap: 30px; /* Отступ между карточками */
 }
 
-.event-card {
-  background-color: #CDD5AE; /* Зеленый фон */
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.event {
+  background-color: #E9EDCA; /* Зеленый фон */
+  border-radius: 20px;
   padding: 0; /* Убираем отступы внутри карточки */
   display: flex;
   flex-direction: row; /* Горизонтальное расположение */
-  gap: 20px; /* Отступ между изображением и текстом */
   height: 200px;
   overflow: hidden; /* Обрезка содержимого */
   width: 100%; /* Полная ширина */
+  outline: 1px solid #CDD5AE;
 }
 
 /* Контейнер для изображения и текста */
@@ -94,27 +93,30 @@
 }
 
 .event-title {
-  font-size: 16px;
+  font-size: 24px;
+  font-weight: 600;
   margin: 0; /* Убираем отступы */
   white-space: nowrap; /* Одна строка */
   overflow: hidden; /* Обрезка текста */
   text-overflow: ellipsis; /* Добавляем многоточие */
+  text-transform: uppercase;
 }
 
 .event-details {
-  padding: 20px; /* Внутренние отступы для текста */
+  padding: 1rem 1rem 1rem 2rem; /* Внутренние отступы для текста */
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .event-date {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: auto;
-  color: #666;
+  color: #6b6b6b;
   font-size: 0.85rem;
+  margin: 0;
 }
 
 .event-description-wrapper {
@@ -125,29 +127,37 @@
 .event-description {
   line-height: 1.6;
   max-height: 4.8em; /* 4 строки текста */
+  font-size: 1rem;
   overflow: hidden;
   transition: all 0.3s ease;
   word-break: break-word;
   white-space: pre-line;
+  color: #6b6b6b;
 }
 
 .event-description.expanded {
   max-height: 1000px;
 }
 
-.event-image {
-  width: 250px; /* Фиксированная ширина */
-  height: 100%; /* Растягивается по высоте контейнера */
-  border-radius: 5px 0 0 5px; /* Закругляем углы только слева */
-  object-fit: cover; /* Корректное масштабирование */
-  flex-shrink: 0; /* Запрещаем уменьшение изображения */
-  margin: 0; /* Убираем отступы */
+.event-img-container {
+  width: 250px;
+  height: 200px;
+  min-height: 250px;
+}
+
+.event-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
 }
 
 .event-category {
   margin: 0 0 5px;
-  color: #555;
-  font-weight: 600;
+  font-weight: 500;
+}
+.event-category::first-letter {
+  text-transform: uppercase; /* Первая буква капсом */
 }
 
 .no-posts-message {
@@ -216,11 +226,14 @@
   gap: 8px;
   background: none;
   border: none;
-  color: #337ab7;
+  color: #6E8FC0;
   cursor: pointer;
-  padding: 8px 0;
-  margin-top: 10px;
   justify-content: flex-end;
+}
+
+.read-more-btn:hover {
+  color: #5f7faf;
+  text-decoration: underline;
 }
 
 .arrow-icon {
@@ -233,10 +246,6 @@
 
 .btn-text {
   font-size: 0.9rem;
-}
-
-.event-date {
-  margin-top: auto;
 }
 
 .foot {

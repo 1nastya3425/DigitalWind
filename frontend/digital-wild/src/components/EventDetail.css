@@ -43,6 +43,10 @@
     border-radius: 5px;
     display: inline-block;
   }
+
+  .detail-category::first-letter {
+    text-transform: uppercase; /* Первая буква капсом */
+  }
   
   .detail-description {
     /* Существующие стили */

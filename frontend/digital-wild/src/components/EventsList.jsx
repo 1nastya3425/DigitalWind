@@ -76,7 +76,7 @@ const EventsList = () => {
     <div className='pre-events'>
       <div className="events-list">
         <div className="header-section">
-          <h2 className="events-title">ВСЕ МЕРОПРИЯТИЯ</h2>
+          <h3 className="events-title">ВСЕ МЕРОПРИЯТИЯ</h3>
           <div className="controls">
             <div className="filter-group">
               <label>Фильтр:</label>
@@ -116,24 +116,28 @@ const EventsList = () => {
         <div className="events-grid">
           {events.length > 0 ? (
             events.filter(event => event.status === 'approved').map(event => (
-              <div key={event.id} className="event-card">
-                <img 
-                  src={event.image ? `http://localhost:3000${event.image}` : '../../images/default-image.png'} 
-                  alt={event.title} 
-                  className="event-image"
-                />
+              <div key={event.id} className="event">
+                <div className="event-img-container">
+                  <img 
+                    src={event.image ? `http://localhost:3000${event.image}` : '../../images/placeholder.png'} 
+                    alt={event.title} 
+                  />
+                </div>
                 <div className="event-details">
                   {/* Добавьте текстовый контент */}
-                  <p className="event-category">{event.category}</p>
-                  <h3 className="event-title">{event.title}</h3>
-                  
-                  {/* Основной проблемный блок */}
-                  <div className="event-description-wrapper">
+                  <div className="event-card-top">
+                    <p className="event-category">{event.category}</p>
+                    <h3 className="event-title">{event.title}</h3>
+                    <div className="event-description-wrapper">
                     <div 
                       className={`event-description ${expandedEvents[event.id] ? 'expanded' : ''}`}
                       dangerouslySetInnerHTML={{ __html: event.description }}
                     />
+                    </div>
                   </div>
+                  
+                  {/* Основной проблемный блок */}
+                  
                 <div className='foot'>                  
                   <p className="event-date">
                     <svg className="date-icon" viewBox="0 0 24 24" width="16" height="16">
