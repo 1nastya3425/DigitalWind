@@ -120,52 +120,59 @@ const Projects = () => {
             <div className="no-posts">У вас пока нет проектов</div>
           ) : (
             posts.map((post) => (
-              <div key={post.id} className="post-card">
-                <div className="post-header">
-                  <h4>{post.title}</h4>
-                  <span className={`status-badge ${post.status}`}>
-                    {post.status === 'pending' && 'На модерации'}
-                    {post.status === 'approved' && 'Одобрен'}
-                    {post.status === 'rejected' && 'Отклонен'}
-                  </span>
-                </div>
-                
+              <div key={post.id} className="project-card">
                 {post.image && (
                   <img
                     src={`http://localhost:3000${post.image}`}
                     alt={post.title}
-                    className="post-image"
+                  />
+                )}
+                {post.image == null && (
+                  <img
+                    src={`./images/placeholder.png`}
+                    alt={post.title}
                   />
                 )}
 
-                <div className="post-content">
-                  <div className="post-text">{post.content}</div>
-                  <div className="post-category">
-                    Категория: {post.category || 'Не указана'}
+                <div className="project-info">
+                  <div className="project-header">
+                    <h4>{post.title}</h4>
+                    <span className={`status-badge ${post.status}`}>
+                      {post.status === 'pending' && 'На модерации'}
+                      {post.status === 'approved' && 'Одобрен'}
+                      {post.status === 'rejected' && 'Отклонен'}
+                    </span>
                   </div>
-                </div>
 
-                {post.status === 'rejected' && (
-                  <div className="rejection-container">
-                    <div className="rejection-reason">
-                      Причина отказа: {post.rejection_reason || 'Не указана'}
-                    </div>
-                    <div className="action-buttons">
-                      <button 
-                        className="resubmit-btn"
-                        onClick={() => handleResubmit(post.id)}
-                      >
-                        Повторная отправка
-                      </button>
-                      <a 
-                        href={`/edit-post/${post.id}`}
-                        className="edit-btn"
-                      >
-                        Редактировать
-                      </a>
+                  <div className="project-content">
+                    <div>{post.content}</div>
+                    <div className="project-category">
+                      Категория: {post.category || 'Не указана'}
                     </div>
                   </div>
-                )}
+
+                  {post.status === 'rejected' && (
+                    <div className="rejection-container">
+                      <div className="rejection-reason">
+                        Причина отказа: {post.rejection_reason || 'Не указана'}
+                      </div>
+                      <div className="action-buttons">
+                        <button 
+                          className="resubmit-btn"
+                          onClick={() => handleResubmit(post.id)}
+                        >
+                          Отправить повторно
+                        </button>
+                        <a 
+                          href={`/edit-post/${post.id}`}
+                          className="edit-btn"
+                        >
+                          Редактировать
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             ))
           )}
