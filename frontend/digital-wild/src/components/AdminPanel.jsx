@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import './AdminPanel.css';
 
 const AdminPanel = () => {
@@ -13,7 +13,7 @@ const AdminPanel = () => {
   const [newPostCategory, setNewPostCategory] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(''); // Для отображения ошибок
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const api = axios.create({
     baseURL: 'http://localhost:3000/api',

@@ -6,7 +6,6 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import MainContent from './components/MainContent';
 import EventsList from './components/EventsList';
-import Account from './components/Profile';
 import Projects from './components/Projects';
 import PostCreation from './components/PostCreation';
 import Login from './components/LoginForm';

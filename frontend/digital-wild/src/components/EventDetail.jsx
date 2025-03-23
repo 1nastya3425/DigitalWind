@@ -3,12 +3,15 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import './EventDetail.css';
+import { useNavigate } from 'react-router-dom';
 
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const formatDate = (dateString) => {
     if (!dateString) return '';
@@ -69,6 +72,11 @@ const EventDetail = () => {
           <p className="detail-date">
             Дата создания: {formatDate(event.created_at) || 'Неизвестно'}
           </p>
+
+
+          <button onClick={() => navigate(-1)}>Назад</button>
+
+
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './NewsSection.css';
@@ -12,6 +13,13 @@ const NewsSection = () => {
     }
   ];
 
+  const navigate = useNavigate();
+  const handleReadMore = (eventId) => {
+    navigate(`/event/${eventId}`); // Для v6
+  };
+
+
+
   return (
     <div className='news'>
     <section id="news">
@@ -22,6 +30,10 @@ const NewsSection = () => {
           className="d-block w-100"
           src={logo}
           alt="Slide 1"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleReadMore(12);
+          }}
         />
       </Carousel.Item>
       <Carousel.Item>
