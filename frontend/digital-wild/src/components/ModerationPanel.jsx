@@ -171,8 +171,9 @@ return (
                     </div>
                 </div>
             )}
-            
 
+
+<div className='moderation-container'>
             {posts.map(post => (
                 <div key={post.id} className="moderation-post">
                     {post.image ? (
@@ -230,6 +231,7 @@ return (
                     </div>
                 </div>
             ))}
+            </div>
         </div>
     </div>
 );

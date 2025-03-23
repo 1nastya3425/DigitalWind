@@ -23,9 +23,10 @@
 
 .moderation-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
   margin-bottom: 3em;
+  justify-content: space-between;
 }
 
   .posts-list {
@@ -42,6 +43,7 @@
     border: 1px solid transparent;
     width: 350px;
     height: 500px;
+    margin-bottom: 2em;
   }
   
   .moderation-post:hover {

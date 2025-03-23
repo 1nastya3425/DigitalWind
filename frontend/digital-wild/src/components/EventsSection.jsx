@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './EventsSection.css';
 
+
 const EventsSection = () => {
   const [events, setEvents] = useState([]);
 
@@ -18,8 +19,7 @@ const EventsSection = () => {
     <section className="events-section">
       <h2 className="events-title">МЕРОПРИЯТИЯ</h2>
       <div className="events">
-        {events.map(event => (
-          
+      {events.map(event => (
           <div key={event.id} className="events-item">
             <div className="event-image-container">
             <img 
@@ -33,7 +33,7 @@ const EventsSection = () => {
               <p className="events-description">{event.content}</p>
             </div>
           </div>
-        ))}
+          ))}
       </div>
     </section>
   );
