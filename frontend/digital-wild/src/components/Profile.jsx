@@ -85,35 +85,34 @@ const Profile = () => {
       </div>
       <div className="content-container">
         <h3>Аккаунт</h3>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
         <div className="account-info">
           {isEditing ? (
             <>
               <div className="form-group">
-                <label>ФИО:</label>
+                <strong>ФИО:</strong>
                 <input 
                   type="text" 
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="form-control"
                 />
               </div>
               <div className="form-group">
-                <label>Дата рождения:</label>
+                <strong>Дата рождения:</strong>
                 <input 
                   type="date" 
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
-                  className="form-control"
                 />
               </div>
               <div className="form-group">
-                <label>Место обучения:</label>
+                <strong>Место обучения:</strong>
                 <select 
                   value={educationPlace}
                   onChange={(e) => {
                     setEducationPlace(e.target.value);
                   }}
-                  className="form-control"
                 >
                   <option value="">Выберите вариант</option>
                   {EDUCATION_OPTIONS.map(option => (
@@ -151,8 +150,6 @@ const Profile = () => {
                   Отмена
                 </button>
               </div>
-              {errorMessage && <p className="error-message">{errorMessage}</p>}
-              {successMessage && <p className="success-message">{successMessage}</p>}
             </>
           ) : (
             <>
@@ -163,7 +160,7 @@ const Profile = () => {
                 onClick={() => setIsEditing(true)} 
                 className="edit-button"
               >
-                Редактировать
+                Редактировать...
               </button>
             </>
           )}
