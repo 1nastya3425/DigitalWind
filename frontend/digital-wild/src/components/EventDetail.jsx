@@ -74,9 +74,7 @@ const EventDetail = () => {
           </p>
 
 
-          <button onClick={() => navigate(-1)}>Назад</button>
-
-
+          <button onClick={() => navigate(-1)} className="back-button">Назад</button>
         </div>
       </div>
     </div>
