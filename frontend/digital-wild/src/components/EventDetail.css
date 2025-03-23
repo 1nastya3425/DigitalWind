@@ -69,6 +69,23 @@
     align-items: center;
     gap: 8px;
   }
+
+  .detail-content .back-button {
+    color: #6E8FC0;
+    text-decoration: none;
+    font-size: 16px;
+    transition: all 0.3s;
+    outline: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .detail-content .back-button:hover {
+    color: #5f7faf;
+    text-decoration: underline;
+  }
   
   .loader {
     position: fixed;
