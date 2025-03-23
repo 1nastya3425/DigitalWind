@@ -10,6 +10,10 @@ const Projects = () => {
   const location = useLocation();
   const [posts, setPosts] = useState([]);
 
+  const handleReadMore = (eventId) => {
+    navigate(`/event/${eventId}`); // Для v6
+  };
+
   useEffect(() => {
     if (!user && !isLoading) {
       navigate('/login');
@@ -120,60 +124,66 @@ const Projects = () => {
             <div className="no-posts">У вас пока нет проектов</div>
           ) : (
             posts.map((post) => (
-              <div key={post.id} className="project-card">
-                {post.image && (
-                  <img
-                    src={`http://localhost:3000${post.image}`}
-                    alt={post.title}
-                  />
-                )}
-                {post.image == null && (
-                  <img
-                    src={`./images/placeholder.png`}
-                    alt={post.title}
-                  />
-                )}
-
-                <div className="project-info">
-                  <div className="project-header">
-                    <h4>{post.title}</h4>
-                    <span className={`status-badge ${post.status}`}>
-                      {post.status === 'pending' && 'На модерации'}
-                      {post.status === 'approved' && 'Одобрен'}
-                      {post.status === 'rejected' && 'Отклонен'}
-                    </span>
-                  </div>
-
-                  <div className="project-content">
-                    <div>{post.content}</div>
-                    <div className="project-category">
-                      Категория: {post.category || 'Не указана'}
-                    </div>
-                  </div>
-
-                  {post.status === 'rejected' && (
-                    <div className="rejection-container">
-                      <div className="rejection-reason">
-                        Причина отказа: {post.rejection_reason || 'Не указана'}
-                      </div>
-                      <div className="action-buttons">
-                        <button 
-                          className="resubmit-btn"
-                          onClick={() => handleResubmit(post.id)}
-                        >
-                          Отправить повторно
-                        </button>
-                        <a 
-                          href={`/edit-post/${post.id}`}
-                          className="edit-btn"
-                        >
-                          Редактировать
-                        </a>
-                      </div>
-                    </div>
+              <button className="event-button"
+                onClick={(e) => {
+                  handleReadMore(post.id);
+                }}
+              >
+                <div key={post.id} className="project-card">
+                  {post.image && (
+                    <img
+                      src={`http://localhost:3000${post.image}`}
+                      alt={post.title}
+                    />
                   )}
+                  {post.image == null && (
+                    <img
+                      src={`./images/placeholder.png`}
+                      alt={post.title}
+                    />
+                  )}
+
+                  <div className="project-info">
+                    <div className="project-header">
+                      <h4>{post.title}</h4>
+                      <span className={`status-badge ${post.status}`}>
+                        {post.status === 'pending' && 'На модерации'}
+                        {post.status === 'approved' && 'Одобрен'}
+                        {post.status === 'rejected' && 'Отклонен'}
+                      </span>
+                    </div>
+
+                    <div className="project-content">
+                      <div className="project-content-description">{post.content}</div>
+                      <div className="project-category">
+                        Категория: {post.category || 'Не указана'}
+                      </div>
+                    </div>
+
+                    {post.status === 'rejected' && (
+                      <div className="rejection-container">
+                        <div className="rejection-reason">
+                          Причина отказа: {post.rejection_reason || 'Не указана'}
+                        </div>
+                        <div className="action-buttons">
+                          <button 
+                            className="resubmit-btn"
+                            onClick={() => handleResubmit(post.id)}
+                          >
+                            Отправить повторно
+                          </button>
+                          <a 
+                            href={`/edit-post/${post.id}`}
+                            className="edit-btn"
+                          >
+                            Редактировать
+                          </a>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </button>
             ))
           )}
         </div>

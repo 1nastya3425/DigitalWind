@@ -118,7 +118,6 @@ const EventsList = () => {
             events.filter(event => event.status === 'approved').map(event => (
               <button className="event-button"
                 onClick={(e) => {
-                  e.stopPropagation();
                   handleReadMore(event.id);
                 }}
               >

@@ -23,6 +23,11 @@
   outline: 1px solid #CDD5AE;
   transition: all 0.3s;
   overflow-wrap: break-word;
+  height: 100%;
+}
+
+.project-card:hover {
+  background-color: #dde4c0;
 }
 
 .project-card img {
@@ -39,6 +44,16 @@
 
 .project-header {
   margin-bottom: 0.5rem;
+}
+
+.project-header h4 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3; /* 3 строки */
+	-webkit-box-orient: vertical;
+	white-space: normal;
+  word-break: break-word;
 }
 
 .status-badge {
@@ -59,7 +74,17 @@
 
 .project-content {
   color: #6b6b6b;
-  line-height: 1.2;
+  line-height: 1.4;
+}
+
+.project-content-description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 5; /* 5 строк */
+	-webkit-box-orient: vertical;
+	white-space: normal;
+  word-break: break-word;
 }
 
 .project-category{
