@@ -85,8 +85,8 @@ const Projects = () => {
         <h3>Личный Кабинет</h3>
         <div className="profile-sidebar">
           <div className="profile-avatar">
-            <img src={user?.avatarUrl || '/default-avatar.png'} alt="Avatar" />
-            <div className="profile-name">{user?.fullName || user?.username}</div>
+            <img src={user?.avatarUrl || '../images/default-avatar.png'} alt="Avatar" />
+            <div className="profile-name">{user?.fullName || "@"+user?.username}</div>
           </div>
           <nav>
             <ul>
