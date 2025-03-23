@@ -1,0 +1,137 @@
+[33mcommit ec74a106787dbfe56721333d210238524a789a54[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Sun Mar 23 15:45:01 2025 +0400
+
+    мероприятия подправлены
+
+[33mcommit 3c1d8a9e74ae2788cf63f488ee2f7e7d71c3a84d[m
+Author: kopertt <dimkanebroev@mail.ru>
+Date:   Sun Mar 23 15:11:33 2025 +0400
+
+    добавил изменение в аккаунт
+
+[33mcommit 82121acafc76c384c2ad68de21f5bbcb2091f309[m
+Author: kopertt <dimkanebroev@mail.ru>
+Date:   Sun Mar 23 13:58:03 2025 +0400
+
+    добавил отображение 3-х ласт
+
+[33mcommit 8c5cc5936f01cdf5d8c0905d9b6250b0d6e0cc46[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Sun Mar 23 13:19:07 2025 +0400
+
+    сделали карусель чтобы открывала отдельно проект
+
+[33mcommit 84a042fa16bc19294a27367d066d0a9a1c1ee1bb[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sun Mar 23 12:53:43 2025 +0400
+
+    Projects: теперь тоже самое что в EventsList
+
+[33mcommit 3aee10ad8b32590e6e3c22da3f1c34ca0b6c82ea[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sun Mar 23 12:20:35 2025 +0400
+
+    EventsList: удалил кнопку read more, настроил overflow текста
+
+[33mcommit 59bc9f9801ad850e75ab6078e345c072d525b085[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Sun Mar 23 09:25:31 2025 +0400
+
+    Редактирование карточек на главной
+
+[33mcommit dd166bdb9803eabd1a6314b9010fc16c816e4553[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sat Mar 22 19:03:06 2025 +0400
+
+    Подправил EventDetail
+
+[33mcommit 880a3ff8f84478c784de65605a48389368ece4af[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sat Mar 22 18:56:24 2025 +0400
+
+    Временное решение проблемы с картинками
+
+[33mcommit f241453ca7e220528b39d033d6dbf0b70c81fce6[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sat Mar 22 17:59:25 2025 +0400
+
+    Выровнял EventsList
+
+[33mcommit 95bd1b119412bf6b9ab048f86c7c77f7ee05b33f[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sat Mar 22 16:17:06 2025 +0400
+
+    Сверстал EditForm в мод-панели
+
+[33mcommit 1dafea68b00d0f098ba23c79588a882dcaaaf3b7[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sat Mar 22 15:36:23 2025 +0400
+
+    Сверстал EditForm
+
+[33mcommit e1379e22a0a4873efc159e44e24268fe377986ef[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Sat Mar 22 15:13:18 2025 +0400
+
+    Доделал Мои проекты в Личном кабинете
+
+[33mcommit 84a02a7ed6972f64fa0cf9eab8f66380531e09aa[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Fri Mar 21 20:09:33 2025 +0400
+
+    Улучшил вид Личного кабинета
+
+[33mcommit 252e554ab282ee7f36cfbceee4a6497f2531bdf2[m
+Author: Константин Афанасьев <kosty-afanasev@ya.ru>
+Date:   Fri Mar 21 18:31:13 2025 +0400
+
+    Ошибки теперь показываются сверху
+
+[33mcommit 845151c9ee0fbe70bc00346e3a1a9e9debe43b06[m
+Author: kopert <3425nastya@gmail.com>
+Date:   Fri Mar 21 12:57:25 2025 +0400
+
+    Добавил ред. поста и проверку кто переходит на ред. поста
+
+[33mcommit f51ee05b74123f5434d71577a55cc0d8d2f5e05c[m
+Author: kopert <3425nastya@gmail.com>
+Date:   Fri Mar 21 11:41:10 2025 +0400
+
+    Добавил переотправку поста, после отказа
+
+[33mcommit 120d523b176de957ae3d12975028b19e83071729[m
+Author: kopert <3425nastya@gmail.com>
+Date:   Fri Mar 21 11:07:46 2025 +0400
+
+    Добавил отображение в моих проектах
+
+[33mcommit ad40167c2d6cb03278476605934d46ff285ee630[m
+Author: kopert <3425nastya@gmail.com>
+Date:   Fri Mar 21 10:13:47 2025 +0400
+
+    Добавил дефолт картинку в EventList
+
+[33mcommit 8675db41c065ce72656538af01c80064c379c2e9[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Thu Mar 20 23:50:02 2025 +0400
+
+    коммит в сервер
+
+[33mcommit 15918f9c47173c3106b267a4af6df967d8be7c16[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Thu Mar 20 23:40:32 2025 +0400
+
+    добавлен слайд в карусель
+
+[33mcommit f77e90835faa4b85323e2250299d4eff9db3b902[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Thu Mar 20 23:32:01 2025 +0400
+
+    первый коммит
+
+[33mcommit f65c841ce73860fb2dee6c3037cf33f9bfc097b3[m
+Author: 1nastya3425 <3425nastya@gmail.com>
+Date:   Thu Mar 20 23:24:10 2025 +0400
+
+    Initial commit

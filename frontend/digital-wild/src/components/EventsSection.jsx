@@ -19,6 +19,7 @@ const EventsSection = () => {
       <h2 className="events-title">МЕРОПРИЯТИЯ</h2>
       <div className="events">
         {events.map(event => (
+          
           <div key={event.id} className="events-item">
             <div className="event-image-container">
             <img 
