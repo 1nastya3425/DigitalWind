@@ -128,6 +128,61 @@ body {
 }
 
 .logout-acc:hover {
+  color: #db5a5a;
+  text-decoration: underline;
+}
+
+.account-info .form-group {
+  margin-bottom: 1rem;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.button-group .save-button {
+  background: #CDD5AE;
+  padding: 0.25rem 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+}
+
+.button-group .save-button:hover {
+  background: #c0c7a4;
+}
+
+.button-group .cancel-button {
+  color: #EC5E5E;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s;
+  outline: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.button-group .cancel-button:hover {
+  color: #db5a5a;
+  text-decoration: underline;
+}
+
+.edit-button {
+  color: #6E8FC0;
+  text-decoration: none;
+  font-size: 16px;
+  transition: all 0.3s;
+  outline: none;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.edit-button:hover {
+  color: #5f7faf;
   text-decoration: underline;
 }
 

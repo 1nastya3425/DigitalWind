@@ -168,13 +168,17 @@ const Projects = () => {
                         <div className="action-buttons">
                           <button 
                             className="resubmit-btn"
-                            onClick={() => handleResubmit(post.id)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleResubmit(post.id);
+                            }}
                           >
                             Отправить повторно
                           </button>
                           <a 
                             href={`/edit-post/${post.id}`}
                             className="edit-btn"
+                            onClick={(e) => e.stopPropagation()}
                           >
                             Редактировать
                           </a>
