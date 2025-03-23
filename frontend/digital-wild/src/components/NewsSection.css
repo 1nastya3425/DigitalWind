@@ -1,20 +1,94 @@
-body {
-    background-color: #FEFADF;
-  }
-  
-
+/* Общий контейнер */
 .news {
-    background-color:#E9EDCA ;
+    background-color: #E9EDCA;
     text-align: center;
-}
+    padding: 20px;
+  }
 
-.data {
-    margin-top: 20px;
-}
-
-.description {
-    margin-top: 20px;
-    padding-bottom: 20px;
+.news-section {
     margin-bottom: 130px;
 }
-
+  
+  /* Карточка внутри слайда */
+  .carousel-card {
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 400px;
+  }
+  
+  /* Контейнер для изображения */
+  .carousel-image-container {
+    margin: 0px 10px 0px 0px;
+    width: 600px;
+    height: 400px;
+    max-width: 600px;
+    max-height: 400px;
+  }
+  
+  /* Изображение */
+  .carousel-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Контент карточки */
+  .carousel-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-right: 30px;
+  }
+  
+  /* Заголовок */
+  .carousel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Описание */
+  .carousel-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Кнопка "Подробнее" */
+  .carousel-button {
+    background-color: #cbd5a3;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .carousel-button:hover {
+    background-color: #cbd5a3;
+  }
+  
+  /* Стили для react-bootstrap Carousel */
+  .carousel-inner {
+    border-radius: 8px;
+  }
+  
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-control-next-icon,
+  .carousel-control-prev-icon {
+    filter: invert(1); /* Белые стрелки */
+  }

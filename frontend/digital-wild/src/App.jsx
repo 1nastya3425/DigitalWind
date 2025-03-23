@@ -15,6 +15,7 @@ import EventDetail from './components/EventDetail';
 import ModerationPanel from './components/ModerationPanel';
 import Profile from './components/Profile';
 import EditPost from './components/EditPost';
+import './App.css';
 
 function App() {
   return (

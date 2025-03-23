@@ -1,12 +1,13 @@
 .App {
   font-family: Arial, sans-serif;
+  background-color: #FEFADF;
 }
 
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  
 }
-
 
 header {
   background-color: #FAEDCD;
