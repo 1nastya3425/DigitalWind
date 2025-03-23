@@ -116,52 +116,45 @@ const EventsList = () => {
         <div className="events-grid">
           {events.length > 0 ? (
             events.filter(event => event.status === 'approved').map(event => (
-              <div key={event.id} className="event">
-                <div className="event-img-container">
-                  <img 
-                    src={event.image ? `http://localhost:3000${event.image}` : '../../images/placeholder.png'} 
-                    alt={event.title} 
-                  />
-                </div>
-                <div className="event-details">
-                  {/* Добавьте текстовый контент */}
-                  <div className="event-card-top">
-                    <p className="event-category">{event.category}</p>
-                    <h3 className="event-title">{event.title}</h3>
-                    <div className="event-description-wrapper">
-                    <div 
-                      className={`event-description ${expandedEvents[event.id] ? 'expanded' : ''}`}
-                      dangerouslySetInnerHTML={{ __html: event.description }}
+              <button className="event-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleReadMore(event.id);
+                }}
+              >
+                <div key={event.id} className="event">
+                  <div className="event-img-container">
+                    <img 
+                      src={event.image ? `http://localhost:3000${event.image}` : '../../images/placeholder.png'} 
+                      alt={event.title} 
                     />
-                    </div>
                   </div>
-                  
-                  {/* Основной проблемный блок */}
-                  
-                <div className='foot'>                  
-                  <p className="event-date">
-                    <svg className="date-icon" viewBox="0 0 24 24" width="16" height="16">
-                      <path fill="#666" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
-                    </svg>
-                    {formatDate(event.created_at)}
-                  </p>
-
-                  {/* Кнопка с текстом и иконкой */}
-                  <button 
-                    className="read-more-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleReadMore(event.id);
-                    }}
-                  >
-                    <svg className="arrow-icon" viewBox="0 0 24 24" width="16" height="16">
-                      <path fill="#337ab7" d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
-                    </svg>
-                    <span className="btn-text">Читать дальше</span>
-                  </button>
+                  <div className="event-details">
+                    {/* Добавьте текстовый контент */}
+                    <div className="event-card-top">
+                      <p className="event-category">{event.category}</p>
+                      <h3 className="event-title">{event.title}</h3>
+                      <div className="event-description-wrapper">
+                      <div 
+                        className={`event-description ${expandedEvents[event.id] ? 'expanded' : ''}`}
+                        dangerouslySetInnerHTML={{ __html: event.description }}
+                      />
+                      </div>
+                    </div>
+                    
+                    {/* Основной проблемный блок */}
+                    
+                  <div className='foot'>                  
+                    <p className="event-date">
+                      <svg className="date-icon" viewBox="0 0 24 24" width="16" height="16">
+                        <path fill="#666" d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+                      </svg>
+                      {formatDate(event.created_at)}
+                    </p>
+                  </div>
+                  </div>
                 </div>
-                </div>
-              </div>
+              </button>
             ))
           ) : (
             !isLoading && (
