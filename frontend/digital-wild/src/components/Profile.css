@@ -46,6 +46,7 @@ body {
 
 .profile-avatar {
   display: flex;
+  align-items: center;
 }
 
 .profile-name {
