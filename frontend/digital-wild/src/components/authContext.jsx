@@ -9,6 +9,13 @@ export const AuthProvider = ({ children }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const updateUser = (updatedData) => {
+    setUser(prevUser => ({
+      ...prevUser,
+      ...updatedData
+    }));
+  };
+
   const checkAuth = async () => {
     try {
       const res = await axios.get('http://localhost:3000/api/profile', { 
@@ -36,7 +43,7 @@ export const AuthProvider = ({ children }) => {
       await axios.post('http://localhost:3000/api/login', credentials, {
         withCredentials: true
       });
-      await checkAuth(); // Обновляем состояние после входа
+      await checkAuth();
     } catch (error) {
       throw error;
     } finally {
@@ -67,7 +74,8 @@ export const AuthProvider = ({ children }) => {
       isAdmin, 
       isLoading,
       login,
-      logout 
+      logout,
+      updateUser // <<< Добавлено
     }}>
       {children}
     </AuthContext.Provider>
