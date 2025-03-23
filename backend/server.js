@@ -44,7 +44,10 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       username TEXT UNIQUE NOT NULL,
       password TEXT NOT NULL,
-      is_admin INTEGER DEFAULT 0
+      is_admin INTEGER DEFAULT 0,
+      full_name TEXT,
+      date_of_birth DATE,
+      place_of_study TEXT
     )
   `);
 
@@ -112,26 +115,19 @@ const isAdminMiddleware = (req, res, next) => {
 
 // Регистрация пользователя
 app.post('/api/register', async (req, res) => {
-  console.log('Получен POST-запрос на /api/posts');
-  console.log('Тело запроса:', req.body);
-  console.log('Файл:', req.file);
   try {
-    const { username, password } = req.body;
+    const { username, password, fullName, dateOfBirth, placeOfStudy } = req.body;
     if (!username || !password) {
-      return res.status(400).json({ message: 'Заполните все поля' });
+      return res.status(400).json({ message: 'Заполните обязательные поля' });
     }
-    let hashedPassword;
-    try {
-      hashedPassword = await bcrypt.hash(password, 10);
-    } catch (hashError) {
-      return res.status(500).json({ message: 'Ошибка хеширования пароля' });
-    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    
     db.run(
-      'INSERT INTO users (username, password, is_admin) VALUES (?, ?, 0)',
-      [username, hashedPassword],
+      'INSERT INTO users (username, password, full_name, date_of_birth, place_of_study) VALUES (?, ?, ?, ?, ?)',
+      [username, hashedPassword, fullName, dateOfBirth, placeOfStudy],
       (err) => {
         if (err) {
-          console.error('Ошибка регистрации:', err.message);
           return res.status(400).json({ message: 'Пользователь уже существует' });
         }
         res.json({ message: 'Регистрация успешна' });
@@ -173,29 +169,67 @@ app.post('/api/logout', (req, res) => {
 
 // Получение профиля пользователя
 app.get('/api/profile', authMiddleware, (req, res) => {
-  db.get(
-    'SELECT id, username, is_admin FROM users WHERE id = ?',
-    [req.user.id],
-    (err, user) => {
+  db.get(`
+    SELECT 
+      id, 
+      username, 
+      full_name, 
+      date_of_birth, 
+      place_of_study, 
+      is_admin 
+    FROM users 
+    WHERE id = ?
+  `, [req.user.id], (err, user) => {
+    if (err) return res.status(500).json({ error: 'Ошибка сервера' });
+    res.json(user);
+  });
+});
+
+app.put('/api/profile', authMiddleware, (req, res) => {
+  const userId = req.user.id;
+  const { fullName, dateOfBirth, placeOfStudy } = req.body;
+  
+  db.run(`
+    UPDATE users 
+    SET full_name = ?,
+        date_of_birth = ?,
+        place_of_study = ?
+    WHERE id = ?
+  `, [fullName, dateOfBirth, placeOfStudy, userId], (err) => {
+    if (err) return res.status(500).json({ error: 'Ошибка обновления' });
+    
+    db.get(`
+      SELECT 
+        id, 
+        username, 
+        full_name, 
+        date_of_birth, 
+        place_of_study, 
+        is_admin 
+      FROM users 
+      WHERE id = ?
+    `, [userId], (err, user) => {
       if (err) return res.status(500).json({ error: 'Ошибка сервера' });
       res.json(user);
-    }
-  );
+    });
+  });
 });
 
 // Админка - управление пользователями
 app.get('/api/admin/users', authMiddleware, isAdminMiddleware, (req, res) => {
-  db.all('SELECT id, username, is_admin FROM users', (err, users) => {
+  db.all('SELECT id, username, full_name, date_of_birth, place_of_study, is_admin FROM users', (err, users) => {
     if (err) return res.status(500).json({ error: 'Ошибка сервера' });
     res.json(users);
   });
 });
 
 app.put('/api/admin/users/:id', authMiddleware, isAdminMiddleware, (req, res) => {
-  const { is_admin } = req.body;
+  const { is_admin, fullName, dateOfBirth, placeOfStudy } = req.body;
   const userId = req.params.id;
-  db.run('UPDATE users SET is_admin = ? WHERE id = ?', 
-    [is_admin ? 1 : 0, userId],
+  
+  db.run(
+    'UPDATE users SET is_admin = ?, full_name = ?, date_of_birth = ?, place_of_study = ? WHERE id = ?', 
+    [is_admin ? 1 : 0, fullName, dateOfBirth, placeOfStudy, userId],
     (err) => {
       if (err) return res.status(500).json({ error: 'Ошибка обновления' });
       res.json({ success: true });

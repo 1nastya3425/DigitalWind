@@ -3,18 +3,19 @@ import { useAuth } from './authContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Profile.css';
+import EDUCATION_OPTIONS from '../const/educationOptions';
 
 const Profile = () => {
-  const { user, isLoading, logout } = useAuth();
+  const { user, isLoading, logout, updateUser } = useAuth();
   const navigate = useNavigate();
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState('');
-  const [category, setCategory] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [isEditing, setIsEditing] = useState(false);
+  
+  const [fullName, setFullName] = useState(user?.full_name || '');
+  const [birthDate, setBirthDate] = useState(user?.date_of_birth || '');
+  const [educationPlace, setEducationPlace] = useState(user?.place_of_study || '');
+  const [customEducation, setCustomEducation] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
 
   useEffect(() => {
     if (!user && !isLoading) {
@@ -22,61 +23,26 @@ const Profile = () => {
     }
   }, [user, isLoading, navigate]);
 
-  const handleImageSelect = (e) => {
-    if (e.target.files[0]) {
-      setSelectedImage(e.target.files[0]);
-      setImagePreview(URL.createObjectURL(e.target.files[0]));
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (!title.trim() || !content.trim()) {
-      setErrorMessage('Заполните обязательные поля');
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('content', content);
-    formData.append('category', category);
-    if (selectedImage) formData.append('image', selectedImage);
-
+  const handleSaveProfile = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/posts', formData, {
-        withCredentials: true,
-        headers: { 
-          'Content-Type': 'multipart/form-data' // Убедитесь, что это указано
-        }
+      let finalEducation = educationPlace;
+      if (educationPlace === 'other') {
+        finalEducation = customEducation;
+      }
+
+      const response = await axios.put('http://localhost:3000/api/profile', {
+        fullName,
+        dateOfBirth: birthDate,
+        placeOfStudy: finalEducation
+      }, {
+        withCredentials: true
       });
       
-      setTitle('');
-      setContent('');
-      setCategory('');
-      setSelectedImage(null);
-      setImagePreview('');
-      setSuccessMessage('Пост отправлен на модерацию');
+      updateUser(response.data);
+      setIsEditing(false);
+      setSuccessMessage('Профиль успешно обновлен');
     } catch (error) {
-      if (error.response) {
-        // Сервер вернул ошибку
-        setErrorMessage(`Ошибка: ${error.response.data.error}`);
-      } else if (error.request) {
-        // Запрос не дошел до сервера
-        setErrorMessage('Сервер недоступен. Проверьте подключение');
-      } else {
-        // Ошибка настройки запроса
-        setErrorMessage('Ошибка: ' + error.message);
-      }
-    }
-  };
-
-  const handleLogout = async () => {
-    try {
-      await logout();
-      navigate('/login');
-    } catch (error) {
-      console.error('Ошибка выхода:', error);
+      setErrorMessage(`Ошибка: ${error.response?.data?.error || error.message}`);
     }
   };
 
@@ -95,22 +61,24 @@ const Profile = () => {
         <div className="profile-sidebar">
           <div className="profile-avatar">
             <img src={user?.avatarUrl || '/default-avatar.png'} alt="Avatar" />
-            <div className="profile-name">{user?.fullName || user?.username}</div>
+            <div className="profile-name">{user?.full_name || user?.username}</div>
           </div>
           <nav>
             <ul>
-              <div className='sidebar-option '>
+              <div className='sidebar-option'>
                 <li>
-                  <a href="/account" className={location.pathname === '/account' ? 'active-link' : ''}>Аккаунт</a>
+                  <a href="/account" className='active-link'>Аккаунт</a>
                 </li>
                 <li>
-                  <a href="/projects" className={location.pathname === '/projects' ? 'active-link' : ''}>Мои проекты</a>
+                  <a href="/projects">Мои проекты</a>
                 </li>
                 <li>
-                  <a href="/create-post" className={location.pathname === '/create-post' ? 'active-link' : ''}>Создать пост</a>
+                  <a href="/create-post">Создать пост</a>
                 </li>
               </div>
-              <li><button onClick={handleLogout} className='logout-acc'>Выйти...</button></li>
+              <li>
+                <button onClick={logout} className='logout-acc'>Выйти...</button>
+              </li>
             </ul>
           </nav>
         </div>
@@ -118,9 +86,87 @@ const Profile = () => {
       <div className="content-container">
         <h3>Аккаунт</h3>
         <div className="account-info">
-          <p><strong>ФИО:</strong> {user.fullName}</p>
-          <p><strong>Дата рождения:</strong> {user.birthDate}</p>
-          <p><strong>Место обучения:</strong> {user.educationPlace}</p>
+          {isEditing ? (
+            <>
+              <div className="form-group">
+                <label>ФИО:</label>
+                <input 
+                  type="text" 
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Дата рождения:</label>
+                <input 
+                  type="date" 
+                  value={birthDate}
+                  onChange={(e) => setBirthDate(e.target.value)}
+                  className="form-control"
+                />
+              </div>
+              <div className="form-group">
+                <label>Место обучения:</label>
+                <select 
+                  value={educationPlace}
+                  onChange={(e) => {
+                    setEducationPlace(e.target.value);
+                  }}
+                  className="form-control"
+                >
+                  <option value="">Выберите вариант</option>
+                  {EDUCATION_OPTIONS.map(option => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {educationPlace === 'other' && (
+                <div className="form-group">
+                  <label>Укажите ваше учебное заведение:</label>
+                  <input 
+                    type="text"
+                    value={customEducation}
+                    onChange={(e) => {
+                      setCustomEducation(e.target.value);
+                      setEducationPlace(e.target.value);
+                    }}
+                    className="form-control"
+                  />
+                </div>
+              )}
+              <div className="button-group">
+                <button 
+                  onClick={handleSaveProfile} 
+                  className="save-button"
+                >
+                  Сохранить
+                </button>
+                <button 
+                  onClick={() => setIsEditing(false)} 
+                  className="cancel-button"
+                >
+                  Отмена
+                </button>
+              </div>
+              {errorMessage && <p className="error-message">{errorMessage}</p>}
+              {successMessage && <p className="success-message">{successMessage}</p>}
+            </>
+          ) : (
+            <>
+              <p><strong>ФИО:</strong> {user.full_name || 'Не указано'}</p>
+              <p><strong>Дата рождения:</strong> {user.date_of_birth || 'Не указана'}</p>
+              <p><strong>Место обучения:</strong> {user.place_of_study || 'Не указано'}</p>
+              <button 
+                onClick={() => setIsEditing(true)} 
+                className="edit-button"
+              >
+                Редактировать
+              </button>
+            </>
+          )}
         </div>
       </div>
     </div>
