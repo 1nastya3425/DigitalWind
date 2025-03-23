@@ -34,7 +34,7 @@ const EventsSection = () => {
               />
             </div>
             <div className="events-details">
-              <h3 className="events-title">{event.title}</h3>
+              <h3 className="event-title">{event.title}</h3>
               <p className="events-description">{event.description}</p>
             </div>
           </div>

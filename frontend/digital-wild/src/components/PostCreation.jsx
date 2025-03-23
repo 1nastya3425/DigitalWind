@@ -146,6 +146,7 @@ const PostCreation = () => {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
+                required
               >
                 <option value="">Выберите категорию</option>
                 <option value="спорт">Спорт</option>

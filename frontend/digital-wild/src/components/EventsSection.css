@@ -2,37 +2,44 @@ body {
   background-color: #FEFADF;
 }
 
-
 .events-section {
-  background-color: #E9EDCA ;
+  background-color: #E9EDCA;
   padding: 20px;
   text-align: center;
   margin-bottom: 150px;
+  height: 500px;
 }
 
-.events-title {
+.events-section .events-title {
   font-size: 24px;
-  margin-bottom: 40px;
+  margin: 0px 0px 30px 0px;
 }
 
 .events {
   display: flex;
-  justify-content: center; /* Выравнивание по центру */
+  flex-wrap: nowrap;
+  justify-content: center;
+  gap: 20px;
+  flex-direction: row;
 }
 
-.event-image-container {
-  flex: 1;
+.event-image-container .event-image {
+  width: 100%;
   height: 100%;
+  border-radius: 5px 0 0 5px;
+  object-fit: cover;
+  flex-shrink: 0;
+  margin: 0;
 }
 
 .event-card {
-  width: calc(33.33% - 20px);
-  margin: 10px;
+  width: calc(33.33% - 20px); /* Три колонки на широких экранах */
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
   position: relative; /* Для позиционирования псевдоэлемента */
+  overflow: hidden; /* Обеспечиваем обрезку содержимого */
 }
 
 
@@ -45,39 +52,43 @@ body {
   object-fit: cover;
   margin: 0;
 }
+@media (max-width: 768px) {
+  .event-card {
+    width: calc(50% - 20px); /* Две колонки на средних экранах */
+  }
+}
 
-.event-title {
-  font-size: 18px;
-  margin-bottom: 10px;
+@media (max-width: 480px) {
+  .event-card {
+    width: 100%; /* Одна колонка на маленьких экранах */
+  }
+  .event-title {
+    font-size: 16px; /* Уменьшаем размер заголовка */
+  }
+
+  .event-description {
+    font-size: 12px; /* Уменьшаем размер текста */
+  }
+}
+
+.event-image-container {
+  width: 100%; /* Ширина контейнера для изображения */
+  overflow: hidden; /* Обрезаем изображение при необходимости */
+}
+
+.events-details .event-title {
+  font-size: 22px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 5px;
 }
 
 .event-description {
   font-size: 14px;
   line-height: 1.5;
-}
-
-/* Адаптивный зеленый фон */
-.event-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #E9EDCA ; /* Цвет фона */
-  z-index: -1; /* Псевдоэлемент находится под текстом */
-  border-radius: 5px;
-}
-
-/* Медиа-запросы */
-@media (max-width: 768px) {
-  .event-card {
-    width: calc(50% - 20px); /* На мобильных устройствах две колонки */
-  }
-
-  @media (max-width: 480px) {
-    .event-card {
-      width: 100%; /* На очень маленьких экранах одна колонка */
-    }
-  }
+  white-space: nowrap; /* Отключаем перенос строк */
+  overflow: hidden; /* Обрезаем содержимое */
+  text-overflow: ellipsis; /* Добавляем многоточие */
 }
