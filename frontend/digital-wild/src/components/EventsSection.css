@@ -7,7 +7,7 @@ body {
   padding: 20px;
   text-align: center;
   margin-bottom: 150px;
-  height: 500px;
+  height: 600px;
 }
 
 .events-section .events-title {
@@ -19,7 +19,7 @@ body {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 20px;
+  gap: 130px;
   flex-direction: row;
 }
 
@@ -76,13 +76,15 @@ body {
   overflow: hidden; /* Обрезаем изображение при необходимости */
 }
 
-.events-details .event-title {
+.events-datails .event-title{
   font-size: 22px;
   margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   margin-bottom: 5px;
+  display: -webkit-box; /* Создаем блок для нескольких строк */
+  -webkit-line-clamp: 2; /* Ограничиваем текст двумя строками */
+  -webkit-box-orient: vertical; /* Вертикальное расположение строк */
+  overflow: hidden; /* Скрываем лишний текст */
+  text-overflow: ellipsis; /* Добавляем многоточие */
 }
 
 .event-description {
@@ -91,4 +93,9 @@ body {
   white-space: nowrap; /* Отключаем перенос строк */
   overflow: hidden; /* Обрезаем содержимое */
   text-overflow: ellipsis; /* Добавляем многоточие */
+}
+
+.events-item {
+  width: 400px;
+  height: 300px;
 }

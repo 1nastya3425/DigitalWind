@@ -12,6 +12,8 @@ const EventsSection = () => {
       .catch(error => console.error('Ошибка загрузки мероприятий:', error));
   }, []);
 
+  console.log('events', events);
+
   return (
     <section className="events-section">
       <h2 className="events-title">МЕРОПРИЯТИЯ</h2>
@@ -21,7 +23,7 @@ const EventsSection = () => {
             <div className="event-image-container">
             <img 
               src={`http://localhost:3000${event.image}`} 
-              alt={event.title} 
+              // alt={event.title} 
               className="event-image"
             />
             </div>
