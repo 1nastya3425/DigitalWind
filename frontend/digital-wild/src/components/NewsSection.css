@@ -89,11 +89,11 @@
   
   /* Кнопка "Подробнее" */
   .carousel-button {
-    background-color: #cbd5a3;
+    background-color: #CDD5AE;
     color: black;
     border: none;
     padding: 10px 20px;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     align-self: flex-start; /* Кнопка прижимается к левому краю */
@@ -102,7 +102,7 @@
   }
   
   .carousel-button:hover {
-    background-color: #a8c27d; /* Немного темнее при наведении */
+    background-color: #c0c7a4; /* Немного темнее при наведении */
   }
     
     /* Стили для react-bootstrap Carousel */
