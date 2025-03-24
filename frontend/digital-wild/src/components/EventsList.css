@@ -1,0 +1,286 @@
+.pre-events {
+  background-color: #FAEDCD;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.events-list {
+  flex: 1;
+  background-color: #FEFADF;
+  border-radius: 10px;
+  padding: 2.5rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 4rem auto;
+  position: relative;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.events-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.controls {
+  display: flex;
+  gap: 20px;
+}
+
+.filter-group, .sort-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filter-btn, .sort-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  background: none;
+}
+
+.filter-btn img, .sort-btn img {
+  width: 20px;
+  height: auto;
+}
+
+.filter-select, .sort-select {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.events-display {
+  gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.event-button {
+  background: transparent;
+  border: none !important;
+  padding: 0;
+  text-align: left;
+  width: 1120px;
+}
+
+.event {
+  background-color: #E9EDCA; /* Зеленый фон */
+  border-radius: 20px;
+  padding: 0; /* Убираем отступы внутри карточки */
+  display: flex;
+  flex-direction: row; /* Горизонтальное расположение */
+  height: 200px;
+  overflow: hidden; /* Обрезка содержимого */
+  width: 100%; /* Полная ширина */
+  outline: 1px solid #CDD5AE;
+  transition: all 0.3s;
+}
+
+.event:hover {
+  background-color: #dde4c0;
+}
+
+/* Контейнер для изображения и текста */
+.event-content {
+  display: flex;
+  align-items: stretch; /* Растягиваем элементы по высоте */
+  flex: 1; /* Занимаем всё доступное пространство */
+  padding: 0; /* Убираем отступы */
+}
+
+.event-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0; /* Убираем отступы */
+  white-space: nowrap; /* Одна строка */
+  overflow: hidden; /* Обрезка текста */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  text-transform: uppercase;
+}
+
+.event-details {
+  padding: 1rem 2rem; /* Внутренние отступы для текста */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6b6b6b;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.event-description-wrapper {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.event-description {
+  font-size: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  color: #6b6b6b;
+  text-overflow: ellipsis;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3; /* 3 строки */
+	-webkit-box-orient: vertical;
+	white-space: normal;
+  word-break: break-word;
+}
+
+.event-description.expanded {
+  max-height: 1000px;
+}
+
+.event-img-container {
+  width: 250px;
+  height: 100%;
+}
+
+.event-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+.event-category {
+  margin: 0 0 5px;
+  font-weight: 500;
+}
+.event-category::first-letter {
+  text-transform: uppercase; /* Первая буква капсом */
+}
+
+.no-posts-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-weight: 600;
+  transform: translate(-50%, -50%);
+  background: #CDD5AE;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-size: 1.2rem;
+  color: #6b6b6b;
+  width: 80%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.pagination {
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  padding-top: 20px;
+}
+
+.pagination-btn {
+  background-color: #E9EDCA;
+  color: #333;
+  padding: 0.5rem 1rem;
+  min-width: 100px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  outline: 1px solid #CDD5AE;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: #dde4c0;
+}
+
+.pagination-btn:disabled {
+  background-color: #e0e0e0;
+  color: #999;
+  outline: 1px solid #c2c2c2;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.pagination-info {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.foot {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .controls {
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group,
+  .sort-group {
+    margin-bottom: 10px;
+  }
+
+  .event-card {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .event-image {
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 15px;
+    padding: 30px 0;
+  }
+  
+  .pagination-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+  }
+}

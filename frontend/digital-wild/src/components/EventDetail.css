@@ -1,0 +1,105 @@
+/* EventDetail.css */
+.event-detail-page {
+    background-color: #FAEDCD;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .event-container {
+    background-color: #FEFADF;
+    border-radius: 20px;
+    padding: 0px 30px 30px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 100px 0px 100px 0px;
+  }
+
+  .event-detail-head {
+    display: flex;
+    flex-direction: row;
+    gap: 1.5em;
+    padding: 30px 0 20px 0;
+  }
+
+  .event-detail-head h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    vertical-align: middle;
+  }
+
+  .event-detail-head .img-return {
+    width: 4%;
+    height: 4%;
+    cursor: pointer;
+  }
+  
+  .detail-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .detail-title {
+    /* Существующие стили */
+    font-size: 28px;
+    color: #333;
+    margin: 0 0 15px;
+    
+    /* Добавить */
+    word-break: break-word;    /* Переносит длинные заголовки */
+  }
+  
+  .detail-category {
+    color: #6B7A4A;
+    font-weight: 600;
+    margin: 0 0 20px;
+    padding: 5px 10px;
+    background: #E4ECC4;
+    border-radius: 5px;
+    display: inline-block;
+  }
+
+  .detail-category::first-letter {
+    text-transform: uppercase; /* Первая буква капсом */
+  }
+  
+  .detail-description {
+    /* Существующие стили */
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 20px;
+    
+    /* Новые свойства */
+    white-space: pre-line;     /* Сохраняет переносы строк из HTML */
+    word-wrap: break-word;     /* Переносит длинные слова */
+    overflow-wrap: anywhere;   /* Современный аналог word-wrap */
+    max-width: 100%;           /* Ограничивает ширину контейнера */
+  }
+  
+  .detail-date {
+    font-size: 14px;
+    color: #999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2rem;
+  }
+  
+  .error-message {
+    color: #c62828;
+    text-align: center;
+    font-size: 1.1rem;
+  }

@@ -1,0 +1,122 @@
+/* Общий контейнер */
+.news {
+    background-color: #CDD5AE;
+    text-align: center;
+    padding: 20px;
+    }
+  
+  .news-section {
+      margin-bottom: 130px;
+  }
+    
+    /* Карточка внутри слайда */
+    .carousel-card {
+      display: flex;
+          align-items: center;
+          gap: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          background-color: #E9EDCA;
+          max-width: 1100px;
+          margin: 0 auto;
+          height: 400px;
+    }
+    
+    /* Контейнер для изображения */
+    .carousel-image-container {
+      margin: 0px 10px 0px 0px;
+      width: 600px;
+      height: 400px;
+      max-width: 600px;
+      max-height: 400px;
+    }
+    
+    /* Изображение */
+    .carousel-image {
+      border-radius: 8px;
+      max-width: 600px;
+      height: 400px;
+    }
+    
+    /* Контент карточки */
+  /* Общий контейнер карусели */
+  .carousel-content {
+    display: flex; /* Используем flexbox для выравнивания */
+    flex-direction: column; /* Размещаем элементы вертикально */
+    justify-content: space-between; /* Распределяем элементы с отступами */
+    height: 100%; /* Занимает всю доступную высоту */
+    width: 100%; /* Фиксированная ширина */
+    padding: 20px; /* Внутренний отступ */
+    box-sizing: border-box; /* Учитываем padding в размерах */
+  }
+  
+  /* Контейнер для текста */
+  .carousel-text {
+    flex-grow: 1; /* Текст занимает всё доступное пространство */
+    overflow: hidden; /* Скрываем текст, который не помещается */
+  }
+  
+  /* Заголовок */
+  .carousel-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+    margin-bottom: 10px; /* Отступ между заголовком и описанием */
+    overflow: hidden; /* Обрезка текста */
+    text-overflow: ellipsis; /* Многоточие */
+    display: -webkit-box; /* Для многострочного обрезания */
+    -webkit-line-clamp: 2; /* Ограничение до 2 строк */
+    -webkit-box-orient: vertical;
+  }
+  
+  /* Описание */
+  .carousel-description {
+    font-size: 1rem;
+    color: #666;
+    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+    overflow: hidden; /* Обрезка текста */
+    text-overflow: ellipsis; /* Многоточие */
+    display: -webkit-box; /* Для многострочного обрезания */
+    -webkit-line-clamp: 10; /* Ограничение до 3 строк */
+    -webkit-box-orient: vertical;
+    margin-bottom: 20px; /* Отступ между описанием и кнопкой */
+  }
+  
+  /* Кнопка "Подробнее" */
+  .carousel-button {
+    background-color: #CDD5AE;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* Кнопка прижимается к левому краю */
+    margin-top: auto; /* Кнопка всегда внизу контейнера */
+    align-self: flex-end;
+  }
+  
+  .carousel-button:hover {
+    background-color: #c0c7a4; /* Немного темнее при наведении */
+  }
+    
+    /* Стили для react-bootstrap Carousel */
+    .carousel-inner {
+      border-radius: 10px;
+    }
+    
+    .carousel-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .carousel-control-next-icon,
+    .carousel-control-prev-icon {
+      filter: invert(1); /* Белые стрелки */
+    }

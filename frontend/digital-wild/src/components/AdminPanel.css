@@ -1,0 +1,352 @@
+/* AdminPanel.css */
+.admin-bg {
+  padding: 0.1rem 2rem;
+  background-color: #FAEDCD;
+}
+
+.admin-container {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fefadf;
+  border-radius: 16px;
+  box-shadow: 0 6px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-header h1 {
+  color: #000000;
+  font-size: 2rem;
+  position: relative;
+}
+
+.section {
+  margin-bottom: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+.section-title {
+  color: #000000;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: -1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+  background: #CDD5AE;
+}
+
+.table-container {
+  overflow-x: auto;
+  border-radius: 0.7em;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.7em;
+}
+
+.admin-table thead {
+  background: #E9EDCA;
+  border-radius: 0.7em 0.7em 0 0;
+}
+
+.admin-table th {
+  padding: 1.1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #000000;
+}
+
+.admin-table td {
+  padding: 1rem;
+  vertical-align: center;
+  background: #fffce7;
+  color: #000000;
+  border-bottom: 1px solid #dce0be;
+}
+
+.post-create-form {
+  background: #fffce7;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.post-create-form h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #000000;
+}
+
+.post-create-form input,
+.post-create-form textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: .15em solid #e0dcbe;
+  border-radius: 1rem;
+}
+
+.post-create-form input:focus,
+.post-create-form textarea:focus {
+  border-color: #e1bc93;
+  outline: none;
+}
+
+.post-create-form input[type="file"] {
+  padding: 0.8rem;
+  border: .15em solid #e0dcbe;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post-create-form input[type="file"]:focus {
+  border-color: #e1bc93;
+}
+
+.post-create-form button {
+  margin-top: 1rem;
+}
+
+.post-card {
+  background: #fffcea;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+  transition: all 0.3s;
+}
+
+.post-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.post-title {
+  color: #000000;
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+.post-meta {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.post-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.post-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.5rem 2rem;
+  border-radius: 0.7rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button--primary {
+  background: #CDD5AE;
+  color: #000000;
+}
+
+.button--primary:hover {
+  background: #c0c7a4;
+}
+
+.button--danger {
+  background: #d5c9ae;
+  color: #000000;
+}
+
+.button--danger:hover {
+  background: #c2b69c;
+}
+
+.button--secondary {
+  background: #d5c9ae;
+  color: #000000;
+  border: none;
+  margin-left: 1rem;
+}
+
+.button--secondary:hover {
+  background: #c2b69c;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #E9EDCA;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .admin-container {
+    margin: 2rem;
+    padding: 1.5rem;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 0.8rem;
+  }
+
+  .post-image {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .post-actions {
+    display: block;
+  }
+}
+
+/* Стили для редактирования */
+.edit-mode .post-card {
+  padding: 1rem;
+  box-shadow: none;
+}
+
+/* Стилизация выпадающего списка */
+.category-select {
+  height: 2em;
+  width: 12em;
+  text-align: center;
+  margin-bottom: 2rem;
+  border: none;
+  appearance: none;
+  color: #000000;
+  background-color: #CDD5AE;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-select:hover {
+  background-color: #c0c7a4;
+}
+
+select {
+  border: none;
+  outline: none;
+  scroll-behavior: smooth;
+}
+
+/* Стилизация чекбокса */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 1.2rem;
+  width: 1.2rem;
+  border-radius: 50%;
+  border: .15em solid #d5c9ae;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+input[type="checkbox"]:after {
+  content: "";
+  height: 0.8rem;
+  width: 0.8rem;
+  background-color: #d5c9ae;
+  border-radius: 50%;
+  display: none;
+}
+
+input[type="checkbox"]:hover {
+  border: .15em solid #c2b69c;
+}
+
+input[type="checkbox"]:checked:after {
+  display: block;
+}
+
+input[type="checkbox"]:after:hover {
+  background: #c2b69c;
+}
+
+/* Важные акценты */
+.post-card .post-actions button {
+  padding: 0.6rem 1.7rem;
+}
+
+.post-card .post-image {
+  margin-bottom: 1rem;
+}
+
+/* Улучшение читаемости */
+.post-content {
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.post-header {
+  margin-bottom: 1rem;
+}
+
+.post-card {
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+/* Отступы */
+.post-create-form {
+  margin-bottom: 2rem;
+}
+
+.section {
+  padding: 1rem 0;
+}
+
+/* Стили для изображений */
+.post-image {
+  border-radius: 8px;
+}
+
+/* Ошибки */
+.error-message {
+  background: #fcd5db;
+  color: #c62828;
+  border: 0.1rem solid #c62828;
+  border-radius: 4px;
+  padding: 1rem;
+  margin: 0 0 2rem;
+}
