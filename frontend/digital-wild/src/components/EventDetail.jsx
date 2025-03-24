@@ -52,6 +52,9 @@ const EventDetail = () => {
   return (
     <div className="event-detail-page">
       <div className="event-container">
+      <div className='return'>
+        <img src='../images/return-icon.png' onClick={() => navigate(-1)} className='img-return'></img>
+      </div>
       <img 
           src={event.image ? `http://localhost:3000${event.image}` : '../../images/default-image.png'}
           alt={event.title} 

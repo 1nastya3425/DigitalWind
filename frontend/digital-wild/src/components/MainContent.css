@@ -1,6 +1,7 @@
 main {
   padding: 0; /* Убираем отступы */
   background-color: #FEFADF;
+  height: 1320px;
 }
 
 /* Медиа-запросы */

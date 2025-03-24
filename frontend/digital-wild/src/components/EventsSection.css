@@ -4,10 +4,10 @@ body {
 
 .events-section {
   background-color: #E9EDCA;
-  padding: 20px;
   text-align: center;
   margin-bottom: 150px;
   height: 600px;
+  padding: 10px 0px 0px 0px;
 }
 
 .events-section .event-button {
@@ -21,11 +21,11 @@ body {
 
 .events {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: 130px;
-  flex-direction: row;
-  margin-left: 100px;
+      flex-wrap: nowrap;
+      justify-content: center;
+      gap: 0;
+      flex-direction: row;
+      margin-left: 70px;
 }
 
 .event-image-container .event-image {
