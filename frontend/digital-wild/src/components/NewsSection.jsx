@@ -10,16 +10,16 @@ const NewsSection = () => {
   const newsData = [
     {
       id: 1,
-      title: "Шикарная новость о походе в какой-то музей",
+      title: "Шикарная новость о походе в dpfodfopdfodpfodpfodpfodpfodpfodpfodpfodpofdpfodpкакой-то музей",
       description:
-        "Сайт, позволяющий поддержать социальные инициативы молодежи в области культуры, искусства и общественной деятельности.",
+        "Сайт, позволяющий поддержать социальнdfpdfodpfodpfodpofdpofdpofpdfopdofpdofpdopfodpopodpofые инициативы молодежи в области культуры, искусства и общественной деятельности.",
       image: "./images/people.png",
     },
     {
       id: 2,
-      title: "Вторая новость о культурном событии",
+      title: "Вторая новость о кульdpfodpofdpofpdofpdopopopopopopopopoffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffpopopopopopopoopopopтурном событии",
       description:
-        "Мероприятие, которое собирает талантливых людей для совместной работы над проектами.",
+        "Мероприятие, которое собирает таланdfdfdfkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfddfpffffffffffffffffffffffтливых людей для совместной работы над проектами.",
       image: "./images/people.png", 
     },
     // Добавьте больше элементов по необходимости
@@ -48,8 +48,10 @@ const NewsSection = () => {
                 </div>
                 {/* Содержимое карточки */}
                 <div className="carousel-content">
-                  <h3 className="carousel-title">{news.title}</h3>
-                  <p className="carousel-description">{news.description}</p>
+                  <div className='carousel-text'>
+                    <h3 className="carousel-title">{news.title}</h3>
+                    <p className="carousel-description">{news.description}</p>
+                  </div>
                   {/* Кнопка "Подробнее" */}
                   <button
                     className="carousel-button"
