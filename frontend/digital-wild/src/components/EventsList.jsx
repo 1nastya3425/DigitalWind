@@ -113,7 +113,7 @@ const EventsList = () => {
         </div>
 
 
-        <div className="events-grid">
+        <div className="events-display">
           {events.length > 0 ? (
             events.filter(event => event.status === 'approved').map(event => (
               <button className="event-button"

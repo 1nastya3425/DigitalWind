@@ -67,10 +67,10 @@
   font-size: 14px;
 }
 
-.events-grid {
-  display: flex;
-  flex-direction: column; /* Столбец */
-  gap: 30px; /* Отступ между карточками */
+.events-display {
+  gap: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .event-button {

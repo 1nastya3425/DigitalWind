@@ -1,61 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from 'react-bootstrap';
 import './NewsSection.css';
 
 const NewsSection = () => {
   const navigate = useNavigate();
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Данные для карусели
-  const newsData = [
-    {
-      id: 1,
-      title: "Шикарная новость о походе в dpfodfopdfodpfodpfodpfodpfodpfodpfodpfodpofdpfodpкакой-то музей",
-      description:
-        "Сайт, позволяющий поддержать социальнdfpdfodpfodpfodpofdpofdpofpdfopdofpdofpdopfodpopodpofые инициативы молодежи в области культуры, искусства и общественной деятельности.",
-      image: "./images/people.png",
-    },
-    {
-      id: 2,
-      title: "Вторая новость о кульdpfodpofdpofpdofpdopopopopopopopopoffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffpopopopopopopoopopopтурном событии",
-      description:
-        "Мероприятие, которое собирает таланdfdfdfkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfdfddfpffffffffffffffffffffffтливых людей для совместной работы над проектами.",
-      image: "./images/people.png", 
-    },
-    // Добавьте больше элементов по необходимости
-  ];
+  useEffect(() => {
+    fetch('http://localhost:3000/api/events')
+      .then(response => {
+        if (!response.ok) throw new Error('Ошибка загрузки новостей');
+        return response.json();
+      })
+      .then(data => {
+        setEvents(data.events);
+        setLoading(false);
+      })
+      .catch(error => {
+        setError(error.message);
+        setLoading(false);
+      });
+  }, []);
 
-  // Функция для перехода к детальной странице мероприятия
-  const handleReadMore = (eventId) => {
-    navigate(`/event/${eventId}`);
-  };
+  if (loading) return <div>Загрузка новостей...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     <div className="news">
       <section id="news">
         <Carousel>
-          {/* Создаем слайд для каждого элемента newsData */}
-          {newsData.map((news, index) => (
-            <Carousel.Item key={index}>
+          {events.map(event => (
+            <Carousel.Item key={event.id}>
               <div className="carousel-card">
-                {/* Изображение */}
                 <div className="carousel-image-container">
                   <img
-                    src={news.image}
-                    alt={news.title}
+                    src={`http://localhost:3000${event.image}`}
+                    alt={event.title}
                     className="carousel-image"
+                    onError={(e) => {
+                      e.target.src = '/images/placeholder.png';
+                    }}
                   />
                 </div>
-                {/* Содержимое карточки */}
                 <div className="carousel-content">
                   <div className='carousel-text'>
-                    <h3 className="carousel-title">{news.title}</h3>
-                    <p className="carousel-description">{news.description}</p>
+                    <h3 className="carousel-title">{event.title}</h3>
+                    <p className="carousel-description">
+                      {event.description.length > 150 
+                        ? `${event.description.slice(0, 150)}...` 
+                        : event.description}
+                    </p>
                   </div>
-                  {/* Кнопка "Подробнее" */}
                   <button
                     className="carousel-button"
-                    onClick={() => handleReadMore(news.id)}
+                    onClick={() => navigate(`/event/${event.id}`)}
                   >
                     Подробнее
                   </button>
