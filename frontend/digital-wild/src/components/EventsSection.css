@@ -25,6 +25,7 @@ body {
   justify-content: center;
   gap: 130px;
   flex-direction: row;
+  margin-left: 100px;
 }
 
 .event-image-container .event-image {
@@ -102,4 +103,12 @@ body {
 .events-item {
   width: 400px;
   height: 300px;
+}
+
+.events .event-button {
+  background: transparent;
+  border: none !important;
+  padding: 0;
+  text-align: left;
+  width: 500px;
 }

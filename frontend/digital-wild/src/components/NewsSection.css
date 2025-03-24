@@ -35,7 +35,7 @@
   .carousel-image {
     border-radius: 8px;
     max-width: 600px;
-    height: 416px;
+    height: 400px;
   }
   
   /* Контент карточки */
@@ -107,7 +107,7 @@
   
   /* Стили для react-bootstrap Carousel */
   .carousel-inner {
-    border-radius: 8px;
+    border-radius: 10px;
   }
   
   .carousel-item {

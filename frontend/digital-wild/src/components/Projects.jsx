@@ -124,7 +124,7 @@ const Projects = () => {
             <div className="no-posts">У вас пока нет проектов</div>
           ) : (
             posts.map((post) => (
-              <button className="event-button"
+              <button className="project-button"
                 onClick={(e) => {
                   handleReadMore(post.id);
                 }}
