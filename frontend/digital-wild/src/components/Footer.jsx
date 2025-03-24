@@ -14,7 +14,7 @@ const Footer = () => {
           <a href="#"><i className="fab fa-whatsapp" /><img src="../../images/whatsapp.png"></img></a>
         </div>
         <div className='number'>
-          <h5>+7 (908) 554-25-88</h5>
+          <h5>+7 (XXX) XXX-XX-XX</h5>
         </div>
         <p className='uni'>СГТУ им. Ю. А. Гагарина</p>
       </div>

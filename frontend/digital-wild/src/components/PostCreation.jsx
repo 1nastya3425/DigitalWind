@@ -95,7 +95,7 @@ const PostCreation = () => {
         <div className="profile-sidebar">
           <div className="profile-avatar">
             <img src={user?.avatarUrl || '../images/default-avatar.png'} alt="Avatar" />
-            <div className="profile-name">{user?.fullName || "@"+user?.username}</div>
+            <div className="profile-name">{user?.full_name || "@"+user?.username}</div>
           </div>
           <nav>
             <ul>

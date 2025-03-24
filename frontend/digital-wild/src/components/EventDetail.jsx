@@ -52,15 +52,16 @@ const EventDetail = () => {
   return (
     <div className="event-detail-page">
       <div className="event-container">
-      <div className='return'>
+      <div className='event-detail-head'>
         <img src='../images/return-icon.png' onClick={() => navigate(-1)} className='img-return'></img>
+        <h3>СТРАНИЦА МЕРОПРИЯТИЯ</h3>
       </div>
       <img 
-          src={event.image ? `http://localhost:3000${event.image}` : '../../images/default-image.png'}
+          src={event.image ? `http://localhost:3000${event.image}` : '../../images/placeholder.png'}
           alt={event.title} 
           className="detail-image"
           onError={(e) => {
-            e.target.src = '../../images/default-image.png';
+            e.target.src = '../../images/placeholder.png';
             e.target.style.objectFit = 'scale-down'; // Показывать иконку вместо растянутой картинки
           }}
         />
@@ -75,9 +76,6 @@ const EventDetail = () => {
           <p className="detail-date">
             Дата создания: {formatDate(event.created_at) || 'Неизвестно'}
           </p>
-
-
-          <button onClick={() => navigate(-1)} className="back-button">Назад</button>
         </div>
       </div>
     </div>

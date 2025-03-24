@@ -32,11 +32,18 @@ const EventsSection = () => {
           >
             <div key={event.id} className="events-item">
               <div className="event-image-container">
-              <img 
-                src={`http://localhost:3000${event.image}`} 
-                // alt={event.title} 
-                className="event-image"
-              />
+                {event.image && (
+                    <img
+                      src={`http://localhost:3000${event.image}`}
+                      className="event-image"
+                    />
+                )}
+                {event.image == null && (
+                  <img
+                    src={`./images/placeholder.png`}
+                    className="event-image"
+                  />
+                )}
               </div>
               <div className="events-details">
                 <h3 className="event-title">{event.title}</h3>
